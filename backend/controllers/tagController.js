@@ -43,7 +43,7 @@ module.exports.deleteTag = asyncHandler(async (req, res) => {
         await notesToUntag[i].save();
     }
     await tag.remove();
-    res.json({ message: 'Tag removed' });
+    res.status(204).send();
 });
 
 module.exports.getTags = asyncHandler(async (req, res) => {

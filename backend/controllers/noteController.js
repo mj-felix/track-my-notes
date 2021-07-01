@@ -59,7 +59,7 @@ module.exports.deleteNote = asyncHandler(async (req, res) => {
         await s3.deleteObjects(deleteParam).promise();
     }
     await note.remove();
-    res.json({ message: 'Note removed' });
+    res.status(204).send();
 });
 
 module.exports.getNotes = asyncHandler(async (req, res) => {
