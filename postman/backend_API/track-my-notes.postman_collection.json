@@ -1,0 +1,744 @@
+{
+	"info": {
+		"_postman_id": "eac61d89-4aef-40e8-96b6-3caf9305846e",
+		"name": "track-my-notes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "GET /users/profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/users/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /users/profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"profileName\" : \"\",\n    \"email\" : \"\",\n    \"password\" : \"\",\n    \"isPublic\" : false,\n    \"firstName\" : \"MJ\",\n    \"lastName\" : \"Felix\",\n    \"linkedIn\" : \"https://www.linkedin.com/in/mjfelix/\",\n    \"twitter\" : \"https://twitter.com/mjfelixdev\",\n    \"gitHub\" : \"https://github.com/mj-felix\",\n    \"homepage\" : \"https://mjfelix.dev\",\n    \"bio\" : \"Tech BA turned Dev :-)\",\n    \"location\" : \"Wellington, NZ\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/users/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{ACCESS_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "POST /auth/register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ACCESS_TOKEN\", pm.response.json().accessToken);",
+									"pm.environment.set(\"REFRESH_TOKEN\", pm.response.json().refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"profileName\" : \"mjf-elix\",\n    \"email\" : \"mjfelix3dev@Gmail.com\",\n    \"password\" : \"Kurwa#1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /auth/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ACCESS_TOKEN\", pm.response.json().accessToken);",
+									"pm.environment.set(\"REFRESH_TOKEN\", pm.response.json().refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"mjfelixdev@gmail.com\",\n    \"password\" : \"Kurwa#1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /auth/refreshaccesstoken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ACCESS_TOKEN\", pm.response.json().accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{REFRESH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/auth/refreshaccesstoken",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refreshaccesstoken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tags",
+			"item": [
+				{
+					"name": "POST /tags",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Brand New Tag 12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/tags",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /tags",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"recipe3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/tags",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /tags/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"recipe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/tags/60dbd14fd4b2f7317ba6105a",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tags",
+								"60dbd14fd4b2f7317ba6105a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /tags/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/tags/60dbae27861f8524161aa6f4",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tags",
+								"60dbae27861f8524161aa6f4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{ACCESS_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "notes",
+			"item": [
+				{
+					"name": "POST /notes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Denek\",\n    \"link\" : \"https://kutwa.pl\",\n    \"isSticky\" : false,\n    \"isPublic\" : true,\n    \"description\" : \"Irek\",\n    \"madePublicAt\" : \"2021-11-30\",\n    \"tags\" : [\n        \"60dbd14fd4b2f7317ba6105a\",\n        \"60dbd157d4b2f7317ba6105e\",\n        \"60dc0d9af634bd4148e7e940\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/notes",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /notes?search=phrase&tags=tagid1,tagid2...&page=1&pageSize=20",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/notes?pageSize=4&page=1&search=mAciek&tags=60dbd157d4b2f7317ba6105e,60dbd14fd4b2f7317ba6105a,60dc0d9af634bd4148e7e940",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notes"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "search",
+									"value": "mAciek"
+								},
+								{
+									"key": "tags",
+									"value": "60dbd157d4b2f7317ba6105e,60dbd14fd4b2f7317ba6105a,60dc0d9af634bd4148e7e940"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /notes/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/notes/60dc0dc2f634bd4148e7e946",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"60dc0dc2f634bd4148e7e946"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /notes/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"222Super Note Yeaho\",\n    \"link\" : \"https://onet2.pl\",\n    \"isSticky\" : true,\n    \"isPublic\" : true,\n    \"description\" : \"2Super Note Yeaho description\",\n    \"madePublicAt\" : \"2021-11-23\",\n    \"tags\" : [\n        \"60dbd14fd4b2f7317ba6105a\",\n        \"60dbd157d4b2f7317ba6105e\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/notes/60dd21d72c8e3b5d36d08404",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"60dd21d72c8e3b5d36d08404"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /notes/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/notes/60dc0df9f634bd4148e7e94f",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"60dc0df9f634bd4148e7e94f"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{ACCESS_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "notes/:id/files",
+			"item": [
+				{
+					"name": "POST /api/notes/:id/files",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/mszonline/Downloads/Millies/Scan 1.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/notes/60dd20458721085d0af68885/files",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"60dd20458721085d0af68885",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /api/notes/:id/files/:storedFileName",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/notes/60dc0df9f634bd4148e7e94f/files/4a9401df-a554-4bfd-945b-62afd7ae2063-Scan1.pdf",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"60dc0df9f634bd4148e7e94f",
+								"files",
+								"4a9401df-a554-4bfd-945b-62afd7ae2063-Scan1.pdf"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{ACCESS_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "GET /public/:profilename",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/public/mjfelix",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"public",
+								"mjfelix"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /public/:profilename/notes?tags=tagid1,tagid2...&page=1&pageSize=20",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/public/mjfelix/notes?tags=60dbd14fd4b2f7317ba6105a,60dbd157d4b2f7317ba6105e,60dc0d9af634bd4148e7e940&page=1&pageSize=3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"public",
+								"mjfelix",
+								"notes"
+							],
+							"query": [
+								{
+									"key": "tags",
+									"value": "60dbd14fd4b2f7317ba6105a,60dbd157d4b2f7317ba6105e,60dc0d9af634bd4148e7e940"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /public/:profilename/notes/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/public/mjfelix/notes/60dc0df9f634bd4148e7e94f",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"public",
+								"mjfelix",
+								"notes",
+								"60dc0df9f634bd4148e7e94f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
