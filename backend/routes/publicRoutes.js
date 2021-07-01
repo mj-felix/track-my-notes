@@ -6,7 +6,7 @@ const {
     getPublicUserProfile
 } = require('../controllers/publicController.js');
 
-// @desc    Retrieve user public profile and user's public notes
+// @desc    Retrieve user public profile
 // @route   GET /api/public/:profilename
 // @access  Public
 router.get('/:profilename', getPublicUserProfile);

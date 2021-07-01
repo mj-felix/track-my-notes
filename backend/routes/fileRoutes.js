@@ -15,7 +15,7 @@ const {
 
 const { uploadS3 } = require('../middleware/fileMiddleware.js');
 
-// @desc    Upload file to a given note
+// @desc    Upload file for a given note
 // @route   POST /api/notes/:id/files
 // @access  Private
 router.post('/:id/files', verifyAccessToken, isSpaceAvailable, noteBelongsToUser, uploadS3, uploadFile);

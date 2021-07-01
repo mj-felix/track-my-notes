@@ -23,11 +23,11 @@ router.route('/')
     .post(verifyAccessToken, createTag);
 
 router.route('/:id')
-    // @desc    Get tag
+    // @desc    Get tag for logged in user
     // @route   GET /api/tags/:id
     // @access  Private
     .put(verifyAccessToken, tagBelongsToUser, updateTag)
-    // @desc    Update tag
+    // @desc    Update tag for logged in user
     // @route   PUT /api/tags/:id
     // @access  Private
     .delete(verifyAccessToken, tagBelongsToUser, deleteTag);

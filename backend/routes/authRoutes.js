@@ -7,7 +7,7 @@ const {
 } = require('../controllers/authController.js');
 
 // @desc    Register a new user & obtain tokens
-// @route   POST /api/users
+// @route   POST /api/users/register
 // @access  Public
 router.post('/register', register);
 
@@ -16,8 +16,8 @@ router.post('/register', register);
 // @access  Public
 router.post('/login', login);
 
-// @desc    Authenticate user & obtain tokens
-// @route   POST /api/users/login
+// @desc    Obtain new access token
+// @route   POST /api/users/refreshaccesstoken
 // @access  Public
 router.post('/refreshaccesstoken', refreshAccessToken);
 

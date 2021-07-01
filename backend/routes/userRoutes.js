@@ -8,11 +8,11 @@ const {
 const { verifyAccessToken } = require('../middleware/authMiddleware.js');
 
 router.route('/profile')
-    // @desc    Get user profile
+    // @desc    Get logged in user profile
     // @route   GET /api/users/profile
     // @access  Private
     .get(verifyAccessToken, getUserProfile)
-    // @desc    Update user profile
+    // @desc    Update logged in user profile
     // @route   PUT /api/users/profile
     // @access  Private
     .put(verifyAccessToken, updateUserProfile);
