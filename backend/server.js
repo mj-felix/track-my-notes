@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const morgan = require('morgan');
 const mongoSanitize = require('express-mongo-sanitize');
 
 const connectToDB = require('./database/connect.js');
@@ -17,6 +16,7 @@ app.use(mongoSanitize({ replaceWith: '_' }));
 // Use .env configuration and Morgan logging in dev
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
+    const morgan = require('morgan');
     app.use(morgan(':user-agent :date[iso] :method :url :status :response-time ms - :res[content-length]'));
 }
 
