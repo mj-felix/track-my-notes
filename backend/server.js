@@ -63,9 +63,7 @@ connectToDB();
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../frontend/build')));
     app.get('*', (req, res) => {
-        if (req.url.includes('/api/v')) {
-            next();
-        } else {
+        if (!req.url.includes('/api/v')) {
             res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
         }
     });
