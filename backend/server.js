@@ -20,6 +20,27 @@ if (process.env.NODE_ENV !== "production") {
     app.use(morgan(':user-agent :date[iso] :method :url :status :response-time ms - :res[content-length]'));
 }
 
+// herokuapp.com subdomain permanent redirection
+if (process.env.PROVIDER === 'heroku' && process.env.NODE_ENV === 'production') {
+    app.use((req, res, next) => {
+        if (req.hostname.includes('track-my-notes')) {
+            res.redirect(301, 'https://trackmynotes.mjfelix.dev');
+        }
+        else
+            next();
+    });
+}
+
+// redirection to https - heroku way
+if (process.env.NODE_ENV === 'production') {
+    app.use((req, res, next) => {
+        if (req.header('x-forwarded-proto') !== 'https')
+            res.redirect(301, `https://${req.header('host')}${req.url}`);
+        else
+            next();
+    });
+}
+
 // Use imported routes
 app.use('/api/v1/auth', require('./routes/authRoutes.js'));
 app.use('/api/v1/users', require('./routes/userRoutes.js'));
