@@ -2,14 +2,15 @@ const asyncHandler = require('express-async-handler');
 
 const generateToken = require('../utils/generateToken.js');
 const User = require('../models/userModel.js');
+const errors = require('../messages/errorMessages.js');
 
 module.exports.getUserProfile = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id).select('-password -__v');
+    const user = await User.findById(req.user._id).select('-password -__v -refreshToken');
     if (user) {
         res.json(user);
     } else {
         res.status(404);
-        throw new Error('User not found');
+        throw new Error(errors.user.NOT_FOUND);
     }
 });
 
@@ -33,10 +34,11 @@ module.exports.updateUserProfile = asyncHandler(async (req, res) => {
         }
         const updatedUser = await user.save();
         delete updatedUser._doc.password;
+        delete updatedUser._doc.refreshToken;
         delete updatedUser._doc.__v;
         res.json(updatedUser);
     } else {
         res.status(404);
-        throw new Error('User not found');
+        throw new Error(errors.user.NOT_FOUND);
     }
 });

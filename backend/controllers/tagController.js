@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 
 const Tag = require('../models/tagModel.js');
 const Note = require('../models/noteModel.js');
+const errors = require('../messages/errorMessages.js');
 
 module.exports.createTag = asyncHandler(async (req, res) => {
     const { name } = req.body;
@@ -10,7 +11,7 @@ module.exports.createTag = asyncHandler(async (req, res) => {
     const tagExists = await Tag.findOne({ name, user });
     if (tagExists) {
         res.status(400);
-        throw new Error('Tag already exists for this user');
+        throw new Error(errors.tag.TAG_EXISTS);
     }
 
     const tag = await Tag.create({
@@ -22,7 +23,7 @@ module.exports.createTag = asyncHandler(async (req, res) => {
         res.status(201).json(tag);
     } else {
         res.status(400);
-        throw new Error('Tag data invalid');
+        throw new Error(errors.tag.INVALID_TAG);
     }
 });
 

@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
+
 const User = require('../models/userModel.js');
 const Tag = require('../models/tagModel.js');
 const Note = require('../models/noteModel.js');
+const errors = require('../messages/errorMessages.js');
 
 module.exports.verifyAccessToken = asyncHandler(async (req, res, next) => {
     let token;
@@ -18,12 +20,12 @@ module.exports.verifyAccessToken = asyncHandler(async (req, res, next) => {
         } catch (e) {
             console.log(e.name, e.message, e.expiredAt ? e.expiredAt : '');
             res.status(401);
-            throw new Error('Not authorized, access token failed');
+            throw new Error(errors.auth.ACCESS_TOKEN_FAILED);
         }
     }
     if (!token) {
         res.status(401);
-        throw new Error('Not authorized, no access token');
+        throw new Error(errors.auth.ACCESS_TOKEN_FAILED);
     }
 });
 
@@ -34,11 +36,11 @@ module.exports.tagBelongsToUser = asyncHandler(async (req, res, next) => {
             next();
         } else {
             res.status(403);
-            throw new Error('Forbidden action');
+            throw new Error(errors.tag.NOT_USERS_TAG);
         }
     } else {
         res.status(404);
-        throw new Error('Tag not found');
+        throw new Error(errors.tag.NOT_FOUND);
     }
 });
 
@@ -49,11 +51,11 @@ module.exports.noteBelongsToUser = asyncHandler(async (req, res, next) => {
             next();
         } else {
             res.status(403);
-            throw new Error('Forbidden action - note does not belong to the logged in user');
+            throw new Error(errors.note.NOT_USERS_NOTE);
         }
     } else {
         res.status(404);
-        throw new Error('Note not found');
+        throw new Error(errors.note.NOT_FOUND);
     }
 });
 
@@ -67,7 +69,7 @@ module.exports.tagsBelongToUser = asyncHandler(async (req, res, next) => {
             next();
         } else {
             res.status(403);
-            throw new Error('Forbidden action - not all tags belong to the logged in user');
+            throw new Error(errors.tag.NOT_USERS_TAG);
         }
     } else {
         next();
@@ -79,7 +81,7 @@ module.exports.fileBelongsToNote = asyncHandler(async (req, res, next) => {
     const note = await Note.findById(id);
     if (!note.files.find(file => file.storedFileName === storedFileName)) {
         res.status(403);
-        throw new Error('Forbidden action - file does not belong to note');
+        throw new Error(errors.file.NOT_USERS_FILE);
     }
     next();
 });
@@ -94,7 +96,7 @@ module.exports.isSpaceAvailable = asyncHandler(async (req, res, next) => {
     const size2000mb = 2000 * 1024 * 1024;
     if (storage > size2000mb) {
         res.status(406);
-        throw new Error('Not enough storage space');
+        throw new Error(errors.file.INSUFFCIENT_SPACE);
     }
     next();
 });

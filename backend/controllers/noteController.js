@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 
 const Note = require('../models/noteModel.js');
 const { s3 } = require('../middleware/fileMiddleware.js');
+const errors = require('../messages/errorMessages.js');
 
 module.exports.createNote = asyncHandler(async (req, res) => {
     const { title, link, isSticky, isPublic, description, madePublicAt, tags } = req.body;
@@ -23,7 +24,7 @@ module.exports.createNote = asyncHandler(async (req, res) => {
         res.status(201).json(note);
     } else {
         res.status(400);
-        throw new Error('Note data invalid');
+        throw new Error(errors.note.INVALID_NOTE);
     }
 });
 

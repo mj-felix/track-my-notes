@@ -6,112 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "users",
-			"item": [
-				{
-					"name": "GET /users/profile",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/v1/users/profile",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"profile"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT /users/profile",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"profileName\" : \"\",\n    \"email\" : \"\",\n    \"password\" : \"\",\n    \"isPublic\" : false,\n    \"firstName\" : \"MJ\",\n    \"lastName\" : \"Felix\",\n    \"linkedIn\" : \"https://www.linkedin.com/in/mjfelix/\",\n    \"twitter\" : \"https://twitter.com/mjfelixdev\",\n    \"gitHub\" : \"https://github.com/mj-felix\",\n    \"homepage\" : \"https://mjfelix.dev\",\n    \"bio\" : \"Tech BA turned Dev :-)\",\n    \"location\" : \"Wellington, NZ\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/users/profile",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"profile"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{ACCESS_TOKEN}}",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
 			"name": "auth",
 			"item": [
 				{
@@ -133,7 +27,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"profileName\" : \"mjf-elix\",\n    \"email\" : \"mjfelix3dev@Gmail.com\",\n    \"password\" : \"Kurwa#1\"\n}",
+							"raw": "{\n    \"profileName\": \"mOcha_one\",\n    \"email\": \"mochaOne@test.com\",\n    \"password\": \"Mocha1#\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -175,7 +69,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\" : \"mjfelixdev@gmail.com\",\n    \"password\" : \"Kurwa#1\"\n}",
+							"raw": "{\n    \n    \"email\": \"mochaOne@test.com\",\n    \"password\": \"Mocha1#\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -241,6 +135,122 @@
 			]
 		},
 		{
+			"name": "users",
+			"item": [
+				{
+					"name": "GET /users/profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/users/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /users/profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"profileName\" : \"mOcha-one\",\n    \"email\" : \"\",\n    \"password\" : \"\",\n    \"isPublic\" : true,\n    \"firstName\" : \"MJ\",\n    \"lastName\" : \"Felix\",\n    \"linkedIn\" : \"https://www.linkedin.com/in/mjfelix/\",\n    \"twitter\" : \"https://twitter.com/mjfelixdev\",\n    \"gitHub\" : \"https://github.com/mj-felix\",\n    \"homepage\" : \"https://mjfelix.dev\",\n    \"bio\" : \"Tech BA turned Dev :-)\",\n    \"location\" : \"Wellington, NZ\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/users/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{ACCESS_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
 			"name": "tags",
 			"item": [
 				{
@@ -250,7 +260,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\" : \"Brand New Tag 12\"\n}",
+							"raw": "{\n    \"name\" : \"Tag to play with 2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -309,7 +319,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\" : \"recipe\"\n}",
+							"raw": "{\n    \"name\" : \"tag updated\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -317,7 +327,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/tags/60dbd14fd4b2f7317ba6105a",
+							"raw": "{{URL}}/api/v1/tags/60df9d35f89537a891b3ede3",
 							"host": [
 								"{{URL}}"
 							],
@@ -325,7 +335,7 @@
 								"api",
 								"v1",
 								"tags",
-								"60dbd14fd4b2f7317ba6105a"
+								"60df9d35f89537a891b3ede3"
 							]
 						}
 					},
@@ -336,17 +346,8 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{URL}}/api/v1/tags/60dbae27861f8524161aa6f4",
+							"raw": "{{URL}}/api/v1/tags/60dd45aabf57f96687e1fc72",
 							"host": [
 								"{{URL}}"
 							],
@@ -354,7 +355,7 @@
 								"api",
 								"v1",
 								"tags",
-								"60dbae27861f8524161aa6f4"
+								"60dd45aabf57f96687e1fc72"
 							]
 						}
 					},
@@ -402,7 +403,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\" : \"Denek\",\n    \"link\" : \"https://kutwa.pl\",\n    \"isSticky\" : false,\n    \"isPublic\" : true,\n    \"description\" : \"Irek\",\n    \"madePublicAt\" : \"2021-11-30\",\n    \"tags\" : [\n        \"60dbd14fd4b2f7317ba6105a\",\n        \"60dbd157d4b2f7317ba6105e\",\n        \"60dc0d9af634bd4148e7e940\"\n    ]\n}",
+							"raw": "{\n    \"title\" : \"Denek\",\n    \"link\" : \"https://kutwa.pl\",\n    \"isSticky\" : false,\n    \"isPublic\" : true,\n    \"description\" : \"Irek\",\n    \"madePublicAt\" : \"2021-11-30\",\n    \"tags\" : [\n        \"60e003dff56c50c715104016\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -466,7 +467,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/notes/60dc0dc2f634bd4148e7e946",
+							"raw": "{{URL}}/api/v1/notes/60dff5f72ecf94bfc092ef29",
 							"host": [
 								"{{URL}}"
 							],
@@ -474,7 +475,7 @@
 								"api",
 								"v1",
 								"notes",
-								"60dc0dc2f634bd4148e7e946"
+								"60dff5f72ecf94bfc092ef29"
 							]
 						}
 					},
@@ -487,7 +488,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\" : \"222Super Note Yeaho\",\n    \"link\" : \"https://onet2.pl\",\n    \"isSticky\" : true,\n    \"isPublic\" : true,\n    \"description\" : \"2Super Note Yeaho description\",\n    \"madePublicAt\" : \"2021-11-23\",\n    \"tags\" : [\n        \"60dbd14fd4b2f7317ba6105a\",\n        \"60dbd157d4b2f7317ba6105e\"\n    ]\n}",
+							"raw": "{\n    \"link\" : \"https://onet2.pl\",\n    \"isSticky\" : true,\n    \"description\" : \"Note 0 updated description\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -495,7 +496,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/notes/60dd21d72c8e3b5d36d08404",
+							"raw": "{{URL}}/api/v1/notes/60dfc9af5ad8aab3f7e70507",
 							"host": [
 								"{{URL}}"
 							],
@@ -503,7 +504,7 @@
 								"api",
 								"v1",
 								"notes",
-								"60dd21d72c8e3b5d36d08404"
+								"60dfc9af5ad8aab3f7e70507"
 							]
 						}
 					},
@@ -584,12 +585,12 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/mszonline/Downloads/Millies/Scan 1.pdf"
+									"src": "/Users/mszonline/Downloads/Millies/Scan 3.pdf"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/notes/60dd20458721085d0af68885/files",
+							"raw": "{{URL}}/api/v1/notes/60e003e7f56c50c71510401c/files",
 							"host": [
 								"{{URL}}"
 							],
@@ -597,7 +598,7 @@
 								"api",
 								"v1",
 								"notes",
-								"60dd20458721085d0af68885",
+								"60e003e7f56c50c71510401c",
 								"files"
 							]
 						}
@@ -610,7 +611,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/notes/60dc0df9f634bd4148e7e94f/files/4a9401df-a554-4bfd-945b-62afd7ae2063-Scan1.pdf",
+							"raw": "{{URL}}/api/v1/notes/60e003e7f56c50c71510401c/files/9ccafd6a-2b0f-4361-a53e-d2fa1cd7b2e6-Scan3.pdf",
 							"host": [
 								"{{URL}}"
 							],
@@ -618,9 +619,9 @@
 								"api",
 								"v1",
 								"notes",
-								"60dc0df9f634bd4148e7e94f",
+								"60e003e7f56c50c71510401c",
 								"files",
-								"4a9401df-a554-4bfd-945b-62afd7ae2063-Scan1.pdf"
+								"9ccafd6a-2b0f-4361-a53e-d2fa1cd7b2e6-Scan3.pdf"
 							]
 						}
 					},

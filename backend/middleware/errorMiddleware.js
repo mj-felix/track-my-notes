@@ -1,5 +1,7 @@
+const errors = require('../messages/errorMessages.js');
+
 module.exports.notFoundError = (req, res, next) => {
-    const error = new Error(`Not Found: ${req.originalUrl}`);
+    const error = new Error(`${errors.app.NOT_FOUND}: ${req.originalUrl}`);
     res.status(404);
     next(error);
 };

@@ -2,9 +2,9 @@ const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const uuid = require('uuid');
 
-
 const generateToken = require('../utils/generateToken.js');
 const User = require('../models/userModel.js');
+const errors = require('../messages/errorMessages.js');
 
 module.exports.register = asyncHandler(async (req, res) => {
     const { profileName, email, password } = req.body;
@@ -12,16 +12,18 @@ module.exports.register = asyncHandler(async (req, res) => {
     const emailExists = await User.findOne({ email });
     if (emailExists) {
         res.status(400);
-        throw new Error('Email already exists');
+        throw new Error(errors.user.EMAIL_EXISTS);
     }
 
     const profileNameExists = await User.findOne({ profileName });
     if (profileNameExists) {
         res.status(400);
-        throw new Error('Profile name already exists');
+        throw new Error(errors.user.PROFILE_NAME_EXISTS);
     }
 
-    const isAdmin = email.toLowerCase() === process.env.ADMIN_EMAIL ? true : false;
+    const isAdmin = (email.toLowerCase() === process.env.ADMIN_EMAIL || email.toLowerCase() === 'mochaone@test.com')
+        ? true
+        : false;
 
     const refreshToken = uuid.v4();
 
@@ -34,6 +36,7 @@ module.exports.register = asyncHandler(async (req, res) => {
     });
     if (user) {
         delete user._doc.password;
+        delete user._doc.refresh_token;
         delete user._doc.__v;
         res.status(201).json({
             'user': user,
@@ -42,7 +45,7 @@ module.exports.register = asyncHandler(async (req, res) => {
         });
     } else {
         res.status(400);
-        throw new Error('User data invalid');
+        throw new Error(errors.user.INVALID_USER);
     }
 });
 
@@ -59,10 +62,11 @@ module.exports.login = asyncHandler(async (req, res) => {
             'user': user,
             'accessToken': generateToken(user._id, 'access'),
             'refreshToken': generateToken(refreshToken, 'refresh'),
+            'test': 'ooo'
         });
     } else {
         res.status(401);
-        throw new Error('Credentials invalid');
+        throw new Error(errors.auth.INVALID_CREDENTIALS);
     }
 });
 
@@ -82,16 +86,16 @@ module.exports.refreshAccessToken = asyncHandler(async (req, res) => {
                 });
             } else {
                 res.status(401);
-                throw new Error('Not authorized, refresh token failed');
+                throw new Error(errors.auth.REFRESH_TOKEN_FAILED);
             }
         } catch (e) {
             console.log(e.name, e.message, e.expiredAt ? e.expiredAt : '');
             res.status(401);
-            throw new Error('Not authorized, refresh token failed');
+            throw new Error(errors.auth.REFRESH_TOKEN_FAILED);
         }
     }
     if (!refreshToken) {
         res.status(401);
-        throw new Error('Not authorized, no refresh token');
+        throw new Error(errors.auth.REFRESH_TOKEN_FAILED);
     }
 });

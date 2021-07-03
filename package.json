@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",
+    "test": "mocha test/*.test.js --require test/hooks.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
@@ -35,8 +36,11 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
     "concurrently": "^6.2.0",
+    "mocha": "^9.0.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   }
 }

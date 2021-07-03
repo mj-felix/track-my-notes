@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
+const errors = require('../messages/errorMessages.js');
+
 const UserSchema = mongoose.Schema(
     {
         profileName: {
@@ -10,7 +12,7 @@ const UserSchema = mongoose.Schema(
             index: true,
             lowercase: true,
             minLength: 3,
-            match: [/^[a-zA-Z-_]+$/, 'Only letters, dash (-) and underscore(_) allowed']
+            match: [/^[a-zA-Z-_]+$/, errors.user.INVALID_PROFILE_NAME]
         },
         email: {
             type: String,
@@ -20,7 +22,7 @@ const UserSchema = mongoose.Schema(
             // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#basic_validation
             match: [
                 /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-                'Email invalid'
+                errors.user.INVALID_EMAIL
             ]
         },
         password: {
@@ -28,7 +30,7 @@ const UserSchema = mongoose.Schema(
             required: true,
             match: [
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@!%*?&-_+])[A-Za-z\d#@!%*?&-_+]{6,}$/,
-                'Password must have minimum six characters, at least one uppercase letter, one lowercase letter, one number and one special character #@!%*?&-_+'
+                errors.user.INVALID_PASSWORD
             ]
         },
         isAdmin: {

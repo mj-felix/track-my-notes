@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 
 const User = require('../models/userModel.js');
 const Note = require('../models/noteModel.js');
+const errors = require('../messages/errorMessages.js');
 
 module.exports.getPublicUserProfile = asyncHandler(async (req, res) => {
     let user = await User
@@ -30,7 +31,7 @@ module.exports.getPublicUserProfile = asyncHandler(async (req, res) => {
         res.json(user);
     } else {
         res.status(404);
-        throw new Error('User not found');
+        throw new Error(errors.user.NOT_FOUND);
     }
 });
 
@@ -50,7 +51,7 @@ module.exports.getPublicNote = asyncHandler(async (req, res) => {
         res.json(note);
     } else {
         res.status(404);
-        throw new Error('Note not found');
+        throw new Error(errors.note.NOT_FOUND);
     }
 });
 
@@ -77,6 +78,6 @@ module.exports.getPublicNotes = asyncHandler(async (req, res) => {
         res.json({ notes: userNotes, notesCount, page, pageSize, pages: Math.ceil(notesCount / pageSize) });
     } else {
         res.status(404);
-        throw new Error('User not found');
+        throw new Error(errors.user.NOT_FOUND);
     }
 });
