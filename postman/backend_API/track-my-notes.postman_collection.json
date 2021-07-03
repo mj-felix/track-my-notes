@@ -35,11 +35,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/api/v1/auth/register",
+							"raw": "{{URL}}/api/v1/auth/register",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"v1",
@@ -403,7 +402,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\" : \"Denek\",\n    \"link\" : \"https://kutwa.pl\",\n    \"isSticky\" : false,\n    \"isPublic\" : true,\n    \"description\" : \"Irek\",\n    \"madePublicAt\" : \"2021-11-30\",\n    \"tags\" : [\n        \"60e003dff56c50c715104016\"\n    ]\n}",
+							"raw": "{\n    \"title\" : \"Denek\",\n    \"link\" : \"https://kutwa.pl\",\n    \"isSticky\" : false,\n    \"isPublic\" : true,\n    \"description\" : \"Irek\",\n    \"madePublicAt\" : \"2021-11-30\",\n    \"tags\" : [\n        \"60e01d95abbc1500153c9ff3\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -467,7 +466,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/notes/60dff5f72ecf94bfc092ef29",
+							"raw": "{{URL}}/api/v1/notes/60e01d9dabbc1500153c9ff7",
 							"host": [
 								"{{URL}}"
 							],
@@ -475,7 +474,7 @@
 								"api",
 								"v1",
 								"notes",
-								"60dff5f72ecf94bfc092ef29"
+								"60e01d9dabbc1500153c9ff7"
 							]
 						}
 					},
@@ -590,7 +589,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/notes/60e003e7f56c50c71510401c/files",
+							"raw": "{{URL}}/api/v1/notes/60e01d9dabbc1500153c9ff7/files",
 							"host": [
 								"{{URL}}"
 							],
@@ -598,7 +597,7 @@
 								"api",
 								"v1",
 								"notes",
-								"60e003e7f56c50c71510401c",
+								"60e01d9dabbc1500153c9ff7",
 								"files"
 							]
 						}
@@ -668,7 +667,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/public/mjfelix",
+							"raw": "{{URL}}/api/v1/public/mocha-one/notes",
 							"host": [
 								"{{URL}}"
 							],
@@ -676,7 +675,8 @@
 								"api",
 								"v1",
 								"public",
-								"mjfelix"
+								"mocha-one",
+								"notes"
 							]
 						}
 					},
