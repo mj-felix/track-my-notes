@@ -9,8 +9,9 @@ module.exports.notFoundError = (req, res, next) => {
 module.exports.errorHandler = (err, req, res, next) => {
     const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     res.status(statusCode);
-    res.json({
-        message: err.message,
-        stack: process.env.NODE_ENV === 'production' ? null : err.stack,
-    });
+    const json = { message: err.message };
+    if (process.env.NODE_ENV !== 'production') {
+        json.stack = err.stack;
+    }
+    res.json(json);
 };

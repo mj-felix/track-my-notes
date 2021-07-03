@@ -5,6 +5,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const connectToDB = require('./database/connect.js');
 const { notFoundError, errorHandler } = require('./middleware/errorMiddleware.js');
 const sanitizeReqBody = require('./middleware/sanitizeMiddleware.js');
+const errors = require('./messages/errorMessages.js');
 
 const app = express();
 app.use(express.json());
@@ -34,8 +35,14 @@ if (process.env.PROVIDER === 'heroku' && process.env.NODE_ENV === 'production') 
 // redirection to https - heroku way
 if (process.env.NODE_ENV === 'production') {
     app.use((req, res, next) => {
-        if (req.header('x-forwarded-proto') !== 'https')
-            res.redirect(301, `https://${req.header('host')}${req.url}`);
+        if (req.header('x-forwarded-proto') !== 'https') {
+            if (req.url.includes('/api/v')) {
+                res.status(400);
+                throw new Error(errors.app.NO_HTTPS_USED);
+            } else {
+                res.redirect(301, `https://${req.header('host')}${req.url}`);
+            }
+        }
         else
             next();
     });
