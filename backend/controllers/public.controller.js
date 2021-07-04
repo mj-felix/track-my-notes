@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const mongoose = require('mongoose');
 
 const User = require('../models/user.model.js');
 const Note = require('../models/note.model.js');
@@ -36,6 +37,10 @@ module.exports.getPublicUserProfile = asyncHandler(async (req, res) => {
 });
 
 module.exports.getPublicNote = asyncHandler(async (req, res) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        res.status(404);
+        throw new Error(errors.note.NOT_FOUND);
+    }
     const note = await Note
         .findOne({ _id: req.params.id, isPublic: true })
         .select('-__v')

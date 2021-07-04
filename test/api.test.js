@@ -510,6 +510,26 @@ describe('Tags', () => {
         user1.tag0 = response.body._id;
     });
 
+    it("update fails when invalid tag id provided", async () => {
+
+        // GIVEN:
+        const accessToken = user2.accessToken;
+        const tagId = 'invalidTagId';
+        const payload = {
+            "name": "Tag updated"
+        };
+
+        // WHEN:
+        const response = await request
+            .put(`${endpoint}/${tagId}`)
+            .set("Authorization", `Bearer ${accessToken}`)
+            .send(payload);
+
+        // THEN:
+        expect(response.status).to.eql(404);
+        expect(response.body.message).includes(errors.tag.NOT_FOUND);
+    });
+
     it("update fails when not user's tag", async () => {
 
         // GIVEN:
@@ -551,6 +571,23 @@ describe('Tags', () => {
         expect(response.body).to.include.all.keys('_id', 'name', 'user');
         expect(response.body.user).to.eql(userId);
         expect(response.body.name).to.eql('tag updated');
+    });
+
+    it("deletion fails when invalid tag id provided", async () => {
+
+        // GIVEN:
+        const accessToken = user2.accessToken;
+        const tagId = 'invalidTagId';
+
+        // WHEN:
+        const response = await request
+            .delete(`${endpoint}/${tagId}`)
+            .set("Authorization", `Bearer ${accessToken}`);
+
+        // THEN:
+        // THEN:
+        expect(response.status).to.eql(404);
+        expect(response.body.message).includes(errors.tag.NOT_FOUND);
     });
 
     it("deletion fails when not user's tag", async () => {
@@ -749,6 +786,28 @@ describe('Notes', () => {
         expect(tagIds).to.have.members([user1.tag1, user1.tag2]);
     });
 
+    it("update fails when invalid note id provided", async () => {
+
+        // GIVEN:
+        const accessToken = user2.accessToken;
+        const noteId = 'invalidNoteId';
+        const payload = {
+            "link": "https://note0updated.pl",
+            "isSticky": true,
+            "description": "Note 0 updated description"
+        };
+
+        // WHEN:
+        const response = await request
+            .put(`${endpoint}/${noteId}`)
+            .set("Authorization", `Bearer ${accessToken}`)
+            .send(payload);
+
+        // THEN:
+        expect(response.status).to.eql(404);
+        expect(response.body.message).includes(errors.note.NOT_FOUND);
+    });
+
     it("update fails when not user's note", async () => {
 
         // GIVEN:
@@ -797,6 +856,22 @@ describe('Notes', () => {
         expect(response.body.description).to.eql('Note 0 updated description');
         expect(response.body.madePublicAt).to.be.null;
         expect(response.body.tags).to.be.empty;
+    });
+
+    it("deletion fails when invalid note id provided", async () => {
+
+        // GIVEN:
+        const accessToken = user2.accessToken;
+        const noteId = 'invalidNoteId';
+
+        // WHEN:
+        const response = await request
+            .delete(`${endpoint}/${noteId}`)
+            .set("Authorization", `Bearer ${accessToken}`);
+
+        // THEN:
+        expect(response.status).to.eql(404);
+        expect(response.body.message).includes(errors.note.NOT_FOUND);
     });
 
     it("deletion fails when not user's note", async () => {
@@ -1141,6 +1216,19 @@ describe('Public content', () => {
 
         // GIVEN:
         const endpoint = '/public/mocha-two/notes/' + user2.note1;
+
+        // WHEN:
+        const response = await request.get(endpoint);
+
+        // THEN:
+        expect(response.status).to.eql(404);
+        expect(response.body.message).includes(errors.note.NOT_FOUND);
+    });
+
+    it("failed note retrieval when invalid note id provided", async () => {
+
+        // GIVEN:
+        const endpoint = '/public/mocha-two/notes/sdfasdf';
 
         // WHEN:
         const response = await request.get(endpoint);

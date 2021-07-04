@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
+const mongoose = require('mongoose');
 
 const User = require('../models/user.model.js');
 const Tag = require('../models/tag.model.js');
@@ -30,6 +31,10 @@ module.exports.verifyAccessToken = asyncHandler(async (req, res, next) => {
 });
 
 module.exports.tagBelongsToUser = asyncHandler(async (req, res, next) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        res.status(404);
+        throw new Error(errors.tag.NOT_FOUND);
+    }
     const tag = await Tag.findById(req.params.id).select('user');
     if (tag) {
         if (tag.user.equals(req.user._id)) {
@@ -45,6 +50,10 @@ module.exports.tagBelongsToUser = asyncHandler(async (req, res, next) => {
 });
 
 module.exports.noteBelongsToUser = asyncHandler(async (req, res, next) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        res.status(404);
+        throw new Error(errors.note.NOT_FOUND);
+    }
     const note = await Note.findById(req.params.id).select('user');
     if (note) {
         if (note.user.equals(req.user._id)) {

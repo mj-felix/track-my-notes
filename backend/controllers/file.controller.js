@@ -14,6 +14,7 @@ module.exports.uploadFile = asyncHandler(async (req, res) => {
     };
     const { id } = req.params;
     const note = await Note.findById(id).populate('tags', 'name');
+    // if(!note) covered by noteBelongsToUser middleware
     note.files.push(file);
     await note.save();
     delete note._doc.__v;
