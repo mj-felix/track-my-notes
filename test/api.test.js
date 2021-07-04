@@ -52,7 +52,7 @@ describe('User registration', () => {
         const payload = {
             "profileName": "mOcha_one",
             "email": "mochaOne@test.com",
-            "password": "Mocha1#"
+            "password": "Mocha1#mocha"
         };
 
         // WHEN:
@@ -117,7 +117,7 @@ describe('User registration', () => {
         const payload = {
             "profileName": "mocha-two",
             "email": "mochaTwo@test.com",
-            "password": "Mocha2#"
+            "password": "Mocha2#mocha"
         };
 
         // WHEN:
@@ -187,7 +187,7 @@ describe('User login', () => {
         // GIVEN:
         const payload = {
             "email": "mochaOne@test.com",
-            "password": "Mocha1#"
+            "password": "Mocha1#mocha"
         };
 
         // WHEN:
@@ -429,7 +429,7 @@ describe('User profile update', () => {
         const accessToken = user1.accessToken;
         const payload = {
             "email": "mocha-one@test.com",
-            "password": "mOcha1#",
+            "password": "mOcha1#mocha",
         };
 
         // WHEN:
@@ -461,7 +461,7 @@ describe('User profile update', () => {
         const endpoint = '/auth/login';
         const payload = {
             "email": "mocha-One@test.com",
-            "password": "mOcha1#"
+            "password": "mOcha1#mocha"
         };
 
         // WHEN:

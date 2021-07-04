@@ -29,7 +29,7 @@ const UserSchema = mongoose.Schema(
             type: String,
             required: true,
             match: [
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@!%*?&-_+])[A-Za-z\d#@!%*?&-_+]{6,}$/,
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@!%*?&-_+])[A-Za-z\d#@!%*?&-_+]{10,}$/,
                 errors.user.INVALID_PASSWORD
             ]
         },
