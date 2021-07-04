@@ -7,9 +7,16 @@ module.exports.notFoundError = (req, res, next) => {
 };
 
 module.exports.errorHandler = (err, req, res, next) => {
-    const statusCode = !res.statusCode ? 500 : err.name === 'ValidationError' ? 400 : res.statusCode;
+    const isMongoValidationError = err.name === 'ValidationError';
+    const statusCode = !res.statusCode ? 500 : isMongoValidationError ? 400 : res.statusCode;
     res.status(statusCode);
     const json = { message: err.message };
+    if (isMongoValidationError) {
+        json.errors = [];
+        for (const [key, value] of Object.entries(err.errors)) {
+            json.errors.push({ field: key, message: value.message });
+        }
+    }
     if (process.env.NODE_ENV !== 'production') {
         json.stack = err.stack;
     }

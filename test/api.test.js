@@ -25,6 +25,31 @@ describe('User registration', () => {
     // 'GLOBAL' GIVEN
     const endpoint = '/auth/register';
 
+    it("fails when no profile name, email and password provided", async () => {
+
+        // GIVEN:
+        const payload = {
+            // empty
+        };
+
+        // WHEN:
+        const response = await request
+            .post(endpoint)
+            .send(payload);
+
+        // THEN:
+        expect(response.status).to.eql(400);
+        expect(response.body.message).includes(errors.user.PROFILE_NAME_REQUIRED);
+        expect(response.body.message).includes(errors.user.EMAIL_REQUIRED);
+        expect(response.body.message).includes(errors.user.PASSWORD_REQUIRED);
+        expect(response.body.errors[0].field).to.eql('profileName');
+        expect(response.body.errors[1].field).to.eql('email');
+        expect(response.body.errors[2].field).to.eql('password');
+        expect(response.body.errors[0].message).to.eql(errors.user.PROFILE_NAME_REQUIRED);
+        expect(response.body.errors[1].message).to.eql(errors.user.EMAIL_REQUIRED);
+        expect(response.body.errors[2].message).to.eql(errors.user.PASSWORD_REQUIRED);
+    });
+
     it("fails when invalid profile name, email or password provided", async () => {
 
         // GIVEN:
@@ -44,6 +69,12 @@ describe('User registration', () => {
         expect(response.body.message).includes(errors.user.INVALID_PROFILE_NAME);
         expect(response.body.message).includes(errors.user.INVALID_EMAIL);
         expect(response.body.message).includes(errors.user.INVALID_PASSWORD);
+        expect(response.body.errors[0].field).to.eql('profileName');
+        expect(response.body.errors[1].field).to.eql('email');
+        expect(response.body.errors[2].field).to.eql('password');
+        expect(response.body.errors[0].message).to.eql(errors.user.INVALID_PROFILE_NAME);
+        expect(response.body.errors[1].message).to.eql(errors.user.INVALID_EMAIL);
+        expect(response.body.errors[2].message).to.eql(errors.user.INVALID_PASSWORD);
     });
 
     it("succeeds when valid profile name, email or password provided", async () => {
@@ -421,6 +452,10 @@ describe('User profile update', () => {
         expect(response.status).to.eql(400);
         expect(response.body.message).includes(errors.user.INVALID_EMAIL);
         expect(response.body.message).includes(errors.user.INVALID_PASSWORD);
+        expect(response.body.errors[0].field).to.eql('email');
+        expect(response.body.errors[1].field).to.eql('password');
+        expect(response.body.errors[0].message).to.eql(errors.user.INVALID_EMAIL);
+        expect(response.body.errors[1].message).to.eql(errors.user.INVALID_PASSWORD);
     });
 
     it("succeeds when valid email and password provided", async () => {

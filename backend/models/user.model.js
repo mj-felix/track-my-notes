@@ -7,16 +7,15 @@ const UserSchema = mongoose.Schema(
     {
         profileName: {
             type: String,
-            required: true,
+            required: [true, errors.user.PROFILE_NAME_REQUIRED],
             unique: true,
             index: true,
             lowercase: true,
-            minLength: 3,
-            match: [/^[a-zA-Z-_]+$/, errors.user.INVALID_PROFILE_NAME]
+            match: [/^[a-zA-Z-_]{3,}$/, errors.user.INVALID_PROFILE_NAME]
         },
         email: {
             type: String,
-            required: true,
+            required: [true, errors.user.EMAIL_REQUIRED],
             unique: true,
             lowercase: true,
             // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#basic_validation
@@ -27,7 +26,7 @@ const UserSchema = mongoose.Schema(
         },
         password: {
             type: String,
-            required: true,
+            required: [true, errors.user.PASSWORD_REQUIRED],
             match: [
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@!%*?&-_+])[A-Za-z\d#@!%*?&-_+]{10,}$/,
                 errors.user.INVALID_PASSWORD

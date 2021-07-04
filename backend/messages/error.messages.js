@@ -12,6 +12,9 @@ module.exports = {
         INVALID_PROFILE_NAME: 'Profile name must have minimum 3 characters, only letters, dash (-) and underscore(_) allowed',
         INVALID_EMAIL: 'Invalid email',
         INVALID_PASSWORD: 'Password must have minimum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character #@!%*?&-_+',
+        PROFILE_NAME_REQUIRED: 'Profile name required',
+        EMAIL_REQUIRED: 'Email required',
+        PASSWORD_REQUIRED: 'Password required',
     },
     tag: {
         TAG_EXISTS: 'Tag already exists',

@@ -21,7 +21,9 @@ module.exports.register = asyncHandler(async (req, res) => {
         throw new Error(errors.user.PROFILE_NAME_EXISTS);
     }
 
-    const isAdmin = (email.toLowerCase() === process.env.ADMIN_EMAIL || email.toLowerCase() === 'mochaone@test.com')
+    const isAdmin = (email &&
+        (email.toLowerCase() === process.env.ADMIN_EMAIL
+            || email.toLowerCase() === 'mochaone@test.com'))
         ? true
         : false;
 
