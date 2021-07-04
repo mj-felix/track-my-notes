@@ -4,7 +4,7 @@ const {
     register,
     login,
     refreshAccessToken
-} = require('../controllers/authController.js');
+} = require('../controllers/auth.controller.js');
 
 // @desc    Register a new user & obtain tokens
 // @route   POST /api/users/register

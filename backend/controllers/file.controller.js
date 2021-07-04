@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler');
 
-const Note = require('../models/noteModel.js');
-const { s3 } = require('../middleware/fileMiddleware.js');
+const Note = require('../models/note.model.js');
+const { s3 } = require('../middleware/file.middleware.js');
 
 module.exports.uploadFile = asyncHandler(async (req, res) => {
     const file = {

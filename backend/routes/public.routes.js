@@ -4,7 +4,7 @@ const {
     getPublicNote,
     getPublicNotes,
     getPublicUserProfile
-} = require('../controllers/publicController.js');
+} = require('../controllers/public.controller.js');
 
 // @desc    Retrieve user public profile
 // @route   GET /api/public/:profilename

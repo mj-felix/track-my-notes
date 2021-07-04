@@ -3,9 +3,9 @@ const router = express.Router();
 const {
     getUserProfile,
     updateUserProfile,
-} = require('../controllers/userController.js');
+} = require('../controllers/user.controller.js');
 
-const { verifyAccessToken } = require('../middleware/authMiddleware.js');
+const { verifyAccessToken } = require('../middleware/auth.middleware.js');
 
 router.route('/profile')
     // @desc    Get logged in user profile

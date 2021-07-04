@@ -1,8 +1,8 @@
 const asyncHandler = require('express-async-handler');
 
-const User = require('../models/userModel.js');
-const Note = require('../models/noteModel.js');
-const errors = require('../messages/errorMessages.js');
+const User = require('../models/user.model.js');
+const Note = require('../models/note.model.js');
+const errors = require('../messages/error.messages.js');
 
 module.exports.getPublicUserProfile = asyncHandler(async (req, res) => {
     let user = await User

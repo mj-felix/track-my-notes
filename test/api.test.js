@@ -4,9 +4,9 @@ const request = require('supertest')('http://localhost:5000/api/v1');
 const requestS3 = require('supertest')('https://track-my-notes-dev.s3.amazonaws.com');
 const expect = require('chai').expect;
 
-const errors = require('../backend/messages/errorMessages.js');
+const errors = require('../backend/messages/error.messages.js');
 
-const User = require('../backend/models/userModel.js');
+const User = require('../backend/models/user.model.js');
 
 // data setup
 const user1 = {};

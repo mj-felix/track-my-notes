@@ -3,9 +3,9 @@ const path = require('path');
 const mongoSanitize = require('express-mongo-sanitize');
 
 const connectToDB = require('./database/connect.js');
-const { notFoundError, errorHandler } = require('./middleware/errorMiddleware.js');
-const sanitizeReqBody = require('./middleware/sanitizeMiddleware.js');
-const errors = require('./messages/errorMessages.js');
+const { notFoundError, errorHandler } = require('./middleware/error.middleware.js');
+const sanitizeReqBody = require('./middleware/sanitize.middleware.js');
+const errors = require('./messages/error.messages.js');
 
 const app = express();
 app.use(express.json());
@@ -49,12 +49,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Use imported routes
-app.use('/api/v1/auth', require('./routes/authRoutes.js'));
-app.use('/api/v1/users', require('./routes/userRoutes.js'));
-app.use('/api/v1/tags', require('./routes/tagRoutes.js'));
-app.use('/api/v1/notes', require('./routes/noteRoutes.js'));
-app.use('/api/v1/notes', require('./routes/fileRoutes.js'));
-app.use('/api/v1/public', require('./routes/publicRoutes.js'));
+app.use('/api/v1/auth', require('./routes/auth.routes.js'));
+app.use('/api/v1/users', require('./routes/user.routes.js'));
+app.use('/api/v1/tags', require('./routes/tag.routes.js'));
+app.use('/api/v1/notes', require('./routes/note.routes.js'));
+app.use('/api/v1/notes', require('./routes/file.routes.js'));
+app.use('/api/v1/public', require('./routes/public.routes.js'));
 
 // Conntect to  MongoDB
 connectToDB();

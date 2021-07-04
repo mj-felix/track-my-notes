@@ -4,16 +4,16 @@ const router = express.Router();
 const {
     uploadFile,
     deleteFile
-} = require('../controllers/fileController.js');
+} = require('../controllers/file.controller.js');
 
 const {
     verifyAccessToken,
     noteBelongsToUser,
     isSpaceAvailable,
     fileBelongsToNote
-} = require('../middleware/authMiddleware.js');
+} = require('../middleware/auth.middleware.js');
 
-const { uploadS3 } = require('../middleware/fileMiddleware.js');
+const { uploadS3 } = require('../middleware/file.middleware.js');
 
 // @desc    Upload file for a given note
 // @route   POST /api/notes/:id/files

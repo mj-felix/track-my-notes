@@ -5,12 +5,12 @@ const {
     updateTag,
     deleteTag,
     getTags
-} = require('../controllers/tagController.js');
+} = require('../controllers/tag.controller.js');
 
 const {
     verifyAccessToken,
     tagBelongsToUser
-} = require('../middleware/authMiddleware.js');
+} = require('../middleware/auth.middleware.js');
 
 router.route('/')
     // @desc    Get tags for logged in user

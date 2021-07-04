@@ -1,8 +1,8 @@
 const asyncHandler = require('express-async-handler');
 
-const Note = require('../models/noteModel.js');
-const { s3 } = require('../middleware/fileMiddleware.js');
-const errors = require('../messages/errorMessages.js');
+const Note = require('../models/note.model.js');
+const { s3 } = require('../middleware/file.middleware.js');
+const errors = require('../messages/error.messages.js');
 
 module.exports.createNote = asyncHandler(async (req, res) => {
     const { title, link, isSticky, isPublic, description, madePublicAt, tags } = req.body;

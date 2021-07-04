@@ -6,13 +6,13 @@ const {
     deleteNote,
     getNotes,
     getNote
-} = require('../controllers/noteController.js');
+} = require('../controllers/note.controller.js');
 
 const {
     verifyAccessToken,
     noteBelongsToUser,
     tagsBelongToUser
-} = require('../middleware/authMiddleware.js');
+} = require('../middleware/auth.middleware.js');
 
 router.route('/')
     // @desc    Get notes for logged in user

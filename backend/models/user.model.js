@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
-const errors = require('../messages/errorMessages.js');
+const errors = require('../messages/error.messages.js');
 
 const UserSchema = mongoose.Schema(
     {

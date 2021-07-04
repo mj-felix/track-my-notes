@@ -2,9 +2,9 @@ const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const uuid = require('uuid');
 
-const generateToken = require('../utils/generateToken.js');
-const User = require('../models/userModel.js');
-const errors = require('../messages/errorMessages.js');
+const generateToken = require('../utils/generate-token.js');
+const User = require('../models/user.model.js');
+const errors = require('../messages/error.messages.js');
 
 module.exports.register = asyncHandler(async (req, res) => {
     const { profileName, email, password } = req.body;
