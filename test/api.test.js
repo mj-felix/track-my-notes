@@ -8,8 +8,17 @@ const errors = require('../backend/messages/errorMessages.js');
 
 const User = require('../backend/models/userModel.js');
 
+// data setup
 const user1 = {};
 const user2 = {};
+// userX to be holding objects for test data
+// user1.refreshToken, .accessToken - to be used for authentication
+// user1.tag0 - to be used for tag's creation, update, deletion
+// user1.tag1, .tag2, .tag3 - to be used for notes' creation and update
+// user1.note0 - to be used for notes's creation, retrieval, update, deletion
+// user1.note1, .note2, .note3, .note4 - to be used for notes' retrieval
+// user1.fileKey0, .fileKey1 - to be used for file's upload and deletion
+// user2.accessToken, .tag1, .note1 - to be used for authorisation
 
 describe('User registration', () => {
 
