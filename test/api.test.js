@@ -40,7 +40,7 @@ describe('User registration', () => {
             .send(payload);
 
         // THEN:
-        expect(response.status).to.eql(500);
+        expect(response.status).to.eql(400);
         expect(response.body.message).includes(errors.user.INVALID_PROFILE_NAME);
         expect(response.body.message).includes(errors.user.INVALID_EMAIL);
         expect(response.body.message).includes(errors.user.INVALID_PASSWORD);
@@ -418,7 +418,7 @@ describe('User profile update', () => {
             .send(payload);
 
         // THEN:
-        expect(response.status).to.eql(500);
+        expect(response.status).to.eql(400);
         expect(response.body.message).includes(errors.user.INVALID_EMAIL);
         expect(response.body.message).includes(errors.user.INVALID_PASSWORD);
     });

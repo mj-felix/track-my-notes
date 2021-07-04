@@ -7,7 +7,7 @@ module.exports.notFoundError = (req, res, next) => {
 };
 
 module.exports.errorHandler = (err, req, res, next) => {
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+    const statusCode = !res.statusCode ? 500 : err.name === 'ValidationError' ? 400 : res.statusCode;
     res.status(statusCode);
     const json = { message: err.message };
     if (process.env.NODE_ENV !== 'production') {
