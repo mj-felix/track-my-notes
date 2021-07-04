@@ -14,7 +14,7 @@ module.exports.errorHandler = (err, req, res, next) => {
     if (isMongoValidationError) {
         json.errors = [];
         for (const [key, value] of Object.entries(err.errors)) {
-            json.errors.push({ field: key, message: value.message });
+            json.errors.push({ field: key, reason: value.message });
         }
     }
     if (process.env.NODE_ENV !== 'production') {
