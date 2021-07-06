@@ -64,7 +64,6 @@ module.exports.login = asyncHandler(async (req, res) => {
             'user': user,
             'accessToken': generateToken(user._id, 'access'),
             'refreshToken': generateToken(refreshToken, 'refresh'),
-            'test': 'ooo'
         });
     } else {
         res.status(401);
