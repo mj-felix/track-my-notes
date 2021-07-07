@@ -27,7 +27,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"profileName\": \"mOcha_one\",\n    \"email\": \"mochaOne@test.com\",\n    \"password\": \"Mocha1#\"\n}",
+							"raw": "{\n    \"profileName\": \"mOcha_one\",\n    \"email\": \"mochaOne@test.com\",\n    \"password\": \"Mocha1#mocha\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -91,7 +91,7 @@
 					"response": []
 				},
 				{
-					"name": "POST /auth/refreshaccesstoken",
+					"name": "GET /auth/refreshaccesstoken",
 					"event": [
 						{
 							"listen": "test",
@@ -114,7 +114,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
 							"raw": "{{URL}}/api/v1/auth/refreshaccesstoken",
@@ -667,7 +667,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/public/mocha-one/notes",
+							"raw": "{{URL}}/api/v1/public/mocha-one",
 							"host": [
 								"{{URL}}"
 							],
@@ -675,8 +675,7 @@
 								"api",
 								"v1",
 								"public",
-								"mocha-one",
-								"notes"
+								"mocha-one"
 							]
 						}
 					},

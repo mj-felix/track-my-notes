@@ -252,7 +252,7 @@ describe('Refresh token', () => {
 
         // WHEN:
         const response = await request
-            .post(endpoint);
+            .get(endpoint);
 
         // THEN:
         expect(response.status).to.eql(401);
@@ -266,7 +266,7 @@ describe('Refresh token', () => {
 
         // WHEN:
         const response = await request
-            .post(endpoint)
+            .get(endpoint)
             .set("Authorization", `Bearer {refreshToken}`);
 
         // THEN:
@@ -281,7 +281,7 @@ describe('Refresh token', () => {
 
         // WHEN:
         const response = await request
-            .post(endpoint)
+            .get(endpoint)
             .set("Authorization", `Bearer ${refreshToken}`);
 
         // THEN:

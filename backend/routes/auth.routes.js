@@ -19,6 +19,6 @@ router.post('/login', login);
 // @desc    Obtain new access token
 // @route   POST /api/users/refreshaccesstoken
 // @access  Public
-router.post('/refreshaccesstoken', refreshAccessToken);
+router.get('/refreshaccesstoken', refreshAccessToken);
 
 module.exports = router;
