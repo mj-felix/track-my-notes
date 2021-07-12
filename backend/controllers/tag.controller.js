@@ -48,6 +48,6 @@ module.exports.deleteTag = asyncHandler(async (req, res) => {
 });
 
 module.exports.getTags = asyncHandler(async (req, res) => {
-    const tags = await Tag.find({ user: req.user._id }).select('-__v');
+    const tags = await Tag.find({ user: req.user._id }).select('-__v').sort({ name: 'asc' });
     res.json(tags);
 });
