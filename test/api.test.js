@@ -452,10 +452,10 @@ describe('User profile update', () => {
         expect(response.status).to.eql(400);
         expect(response.body.message).includes(errors.user.INVALID_EMAIL);
         expect(response.body.message).includes(errors.user.INVALID_PASSWORD);
-        expect(response.body.errors[0].field).to.eql('email');
-        expect(response.body.errors[1].field).to.eql('password');
-        expect(response.body.errors[0].reason).to.eql(errors.user.INVALID_EMAIL);
-        expect(response.body.errors[1].reason).to.eql(errors.user.INVALID_PASSWORD);
+        expect(response.body.errors[1].field).to.eql('email');
+        expect(response.body.errors[0].field).to.eql('password');
+        expect(response.body.errors[1].reason).to.eql(errors.user.INVALID_EMAIL);
+        expect(response.body.errors[0].reason).to.eql(errors.user.INVALID_PASSWORD);
     });
 
     it("succeeds when valid email and password provided", async () => {
@@ -465,6 +465,7 @@ describe('User profile update', () => {
         const payload = {
             "email": "mocha-one@test.com",
             "password": "mOcha1#mocha",
+            "firstName": "MJ"
         };
 
         // WHEN:
@@ -481,13 +482,6 @@ describe('User profile update', () => {
         expect(response.body.email).to.eql('mocha-one@test.com');
         expect(response.body.profileName).to.eql('mocha-one');
         expect(response.body.firstName).to.eql('MJ');
-        expect(response.body.lastName).to.eql('Felix');
-        expect(response.body.linkedIn).to.eql('https://www.linkedin.com/in/mjfelix/');
-        expect(response.body.twitter).to.eql('https://twitter.com/mjfelixdev');
-        expect(response.body.gitHub).to.eql('https://github.com/mj-felix');
-        expect(response.body.homepage).to.eql('https://mjfelix.dev');
-        expect(response.body.bio).to.eql('Tech BA turned Dev :-)');
-        expect(response.body.location).to.eql('Wellington, NZ');
     });
 
     it("is followed by succeessful login with updated credentials provided", async () => {
@@ -1203,13 +1197,6 @@ describe('Public content', () => {
         expect(response.body.email).to.eql('mocha-one@test.com');
         expect(response.body.profileName).to.eql('mocha-one');
         expect(response.body.firstName).to.eql('MJ');
-        expect(response.body.lastName).to.eql('Felix');
-        expect(response.body.linkedIn).to.eql('https://www.linkedin.com/in/mjfelix/');
-        expect(response.body.twitter).to.eql('https://twitter.com/mjfelixdev');
-        expect(response.body.gitHub).to.eql('https://github.com/mj-felix');
-        expect(response.body.homepage).to.eql('https://mjfelix.dev');
-        expect(response.body.bio).to.eql('Tech BA turned Dev :-)');
-        expect(response.body.location).to.eql('Wellington, NZ');
         expect(response.body.publicNotesExist).to.be.true;
     });
 
