@@ -1,0 +1,92 @@
+body {
+    background-image:
+      linear-gradient(to bottom, rgb(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8), rgba(211, 211, 211)), 
+      url('home.background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(211, 211, 211);
+}
+
+main {
+    padding: 70px 0 50px 0;
+}
+
+footer {
+    padding: 5px 0;
+}
+
+.pointer {
+  cursor: pointer;
+}
+.badge a {
+  color: white;
+}
+
+.badge a:hover {
+  color: white;
+}
+
+.note h1 {
+  font-size: 1.3rem;
+}
+
+.note h2 {
+  font-size: 1.1rem;
+}
+
+.note h3 {
+  font-size: .875rem;
+}
+
+.note img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card-container {
+  display: grid;
+  grid-column-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Animation */
+.alert-enter {
+  opacity: 0;
+}
+.alert-enter-active {
+  opacity: 1;
+  transition: opacity 400ms ease-in;
+}
+.alert-exit {
+  opacity: 1;
+}
+.alert-exit-active {
+  opacity: 0;
+  transition: opacity 400ms ease-in;
+}
+/* end of Animation */
+
+/*
+ * disable auto-zoom on iphone input field focus 
+ * http://www.456bereastreet.com/archive/201212/ios_webkit_browsers_and_auto-zooming_form_controls/
+*/
+input[type='text']:focus,
+input[type='number']:focus,
+/* textarea:focus {
+  font-size: 16px;
+} */
+textarea {
+  font-size: 16px !important;
+}
+
+/* disable auto-zoom on iphone input field focus */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px;
+  }
+}
