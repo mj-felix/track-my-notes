@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { Container, Spinner, Card } from 'react-bootstrap';
+import { Container, Spinner, Card, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 
@@ -52,7 +52,7 @@ const PublicNotes = ({ match, location }) => {
                             <>
                                 <Link to={`/user/${match.params.profileName}/notes`}>
                                     Notes
-                                </Link> &rarr; [{tag && tag.name}]
+                                </Link> &rarr; <Badge variant='primary'>{tag && tag.name}</Badge>
                             </>
                             : <>Notes</>
                         }

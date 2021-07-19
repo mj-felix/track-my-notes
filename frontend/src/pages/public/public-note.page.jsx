@@ -47,7 +47,7 @@ const PublicNotes = ({ match, location }) => {
                         <Link to={`/user/${match.params.profileName}/notes`}>
                             Notes
                         </Link>
-                        {' '}&rarr;
+                        {' '}&rarr; {note.title}
                     </Card.Body>
                 </Card>
             </Container>
