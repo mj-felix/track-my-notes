@@ -782,7 +782,7 @@ describe('Notes', () => {
         expect(response.body.isPublic).to.be.true;
         expect(response.body.description).to.eql('Note 0 description');
         expect(response.body.madePublicAt).includes('2021-11-30');
-        expect(response.body.user).to.eql(userId);
+        expect(response.body.user._id).to.eql(userId);
         const tagIds = response.body.tags.map(tag => tag._id);
         expect(tagIds).to.have.members([user1.tag1, user1.tag2]);
 
@@ -810,7 +810,7 @@ describe('Notes', () => {
         expect(response.body.isPublic).to.be.true;
         expect(response.body.description).to.eql('Note 0 description');
         expect(response.body.madePublicAt).includes('2021-11-30');
-        expect(response.body.user).to.eql(userId);
+        expect(response.body.user._id).to.eql(userId);
         const tagIds = response.body.tags.map(tag => tag._id);
         expect(tagIds).to.have.members([user1.tag1, user1.tag2]);
     });

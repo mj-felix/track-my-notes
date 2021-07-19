@@ -122,7 +122,7 @@ const UpdateNote = ({ setIsBeingUpdated, isDraft, setIsDraft, handleDelete, dele
                         <Form.Group controlId='description'>
                             <Form.Label>
                                 Description <TooltipPopup
-                                    msg='Allowed tags and attributes: b, strong, i, em, a[href, target], p, li, ul, ol, img[src, alt, class, style], h1, h2, h3, br, pre'
+                                    msg='Allowed tags and attributes: b, strong, i, em, a[href, target], p, li, ul, ol, img[src, alt, class, style], h1, h2, h3, br, pre. Use ONLY attached images.'
                                     placement='right'
                                 >
                                     <FontAwesomeIcon size='sm' icon={faInfoCircle} />

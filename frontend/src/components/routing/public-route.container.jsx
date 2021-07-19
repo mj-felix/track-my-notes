@@ -12,6 +12,9 @@ const PublicRoute = ({ component: Component, ...rest }) => {
             {...rest}
             render={
                 (props) => {
+                    if (props.location.pathname.includes('/user/')) {
+                        return <Component {...props} />;
+                    }
                     const redirect = props.location.search ? props.location.search.split('=')[1] : '/notes';
                     return refreshToken ? (
                         <Redirect to={redirect} />

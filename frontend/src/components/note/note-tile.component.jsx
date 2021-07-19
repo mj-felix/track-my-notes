@@ -77,7 +77,7 @@ const NoteTile = ({ note }) => {
             <Card.Body className='d-flex flex-column justify-content-between'>
                 <Card.Text>
                     {note.description &&
-                        note.description.length > 297 ? note.description.substring(0, 300) + '...' : note.description
+                        note.description.length > 300 ? note.description.substring(0, 297) + '...' : note.description
                     }
                 </Card.Text>
                 <Card.Text>

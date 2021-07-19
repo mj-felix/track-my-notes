@@ -19,7 +19,7 @@ module.exports.createNote = asyncHandler(async (req, res) => {
         user
     });
     if (note) {
-        note = await note.populate('tags', 'name').execPopulate();
+        note = await note.populate('tags', 'name').populate('user', 'profileName').execPopulate();
         delete note._doc.__v;
         res.status(201).json(note);
     } else {
@@ -40,7 +40,7 @@ module.exports.updateNote = asyncHandler(async (req, res) => {
     note.madePublicAt = madePublicAt || null;
     note.tags = tags || [];
     const updatedNote = await note.save();
-    note = await note.populate('tags', 'name').execPopulate();
+    note = await note.populate('tags', 'name').populate('user', 'profileName').execPopulate();
     res.json(updatedNote);
 });
 
@@ -92,7 +92,7 @@ module.exports.getNotes = asyncHandler(async (req, res) => {
 });
 
 module.exports.getNote = asyncHandler(async (req, res) => {
-    const note = await Note.findById(req.params.id).select('-__v').populate('tags', 'name');
+    const note = await Note.findById(req.params.id).select('-__v').populate('tags', 'name').populate('user', 'profileName');
     // if(!note) covered by noteBelongsToUser middleware
     res.json(note);
 });

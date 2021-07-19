@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Row, Col, Button, Badge, Spinner } from 'react-bootstrap';
 import dateFormat from 'dateformat';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import AppContext from '../../context/app/app.context.js';
 
@@ -17,10 +19,13 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
                 <div className='h4'>
                     {note.isPublic &&
                         <Badge variant='success'>
-                            Public
-                            {note.madePublicAt &&
-                                <> since {dateFormat(note.madePublicAt, 'dd mmm yyyy')}</>
-                            }
+                            <a href={`/user/${note.user.profileName}/notes/${note._id}`} target='_blank' rel='noreferrer'>
+                                Public
+                                {note.madePublicAt &&
+                                    <> since {dateFormat(note.madePublicAt, 'dd mmm yyyy')}</>
+                                }
+                                <FontAwesomeIcon icon={faLink} size='sm' className='ml-1' />
+                            </a>
                         </Badge>
                     }
                     {note.isSticky &&
@@ -29,7 +34,8 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
                     {note.link &&
                         <Badge variant='primary'>
                             <a href={note.link} target='_blank' rel='noreferrer'>
-                                {note.link.length > 40 ? note.link.substring(0, 38) + '...' : note.link}
+                                {note.link.length > 42 ? note.link.replace(/(^\w+:|^)\/\//, '').substring(0, 39) + '...' : note.link.replace(/(^\w+:|^)\/\//, '')}
+                                <FontAwesomeIcon size='sm' icon={faExternalLinkAlt} className='ml-1' />
                             </a>
                         </Badge>
                     }

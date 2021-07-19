@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { Table, Row, Col, Button, Badge } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import AppContext from '../../context/app/app.context.js';
 
@@ -26,7 +28,12 @@ const Profile = ({ setIsProfileBeingUpdated, setAreCredentialsBeingUpdated }) =>
                             </td>
                             <td>
                                 {user.profileName} {user.isPublic ?
-                                    <Badge variant='danger'>public profile</Badge> :
+                                    <Badge variant='danger'>
+                                        <a href={`/user/${user.profileName}`} target='_blank' rel='noreferrer'>
+                                            public profile
+                                            <FontAwesomeIcon icon={faLink} className='ml-1' />
+                                        </a>
+                                    </Badge> :
                                     <Badge variant='success'>non-public profile</Badge>
                                 }
                             </td>
