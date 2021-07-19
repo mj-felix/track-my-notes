@@ -3,7 +3,7 @@ import { Form, Button, Spinner, Row, Col } from 'react-bootstrap';
 
 import AppContext from '../../context/app/app.context.js';
 
-const UpdateCredentials = ({ setAreCredentialsBeingUpdated, setSuccessMessage }) => {
+const UpdateCredentials = ({ setAreCredentialsBeingUpdated }) => {
     const appContext = useContext(AppContext);
     const { user, updateUser } = appContext;
 
@@ -23,7 +23,6 @@ const UpdateCredentials = ({ setAreCredentialsBeingUpdated, setSuccessMessage })
         });
         if (isUserUpdated) {
             setAreCredentialsBeingUpdated(false);
-            setSuccessMessage('Credentials updated successfully');
         } else {
             setLoading(false);
         }

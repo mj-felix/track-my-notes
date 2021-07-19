@@ -19,10 +19,8 @@ const NotesPage = ({ location, history }) => {
             }
         }
         return () => {
-            // console.log('unmountNotesPage');
             eraseNotes();
             eraseError();
-            // eraseTags();
         };
         // eslint-disable-next-line
     }, [accessToken, location]);

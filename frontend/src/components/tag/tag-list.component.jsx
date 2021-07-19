@@ -15,16 +15,12 @@ const TagList = () => {
     const [tagToBeUpdated, setTagToBeUpdated] = useState({});
 
     useEffect(() => {
-        if (accessToken) {
+        if (accessToken && tags.length === 0) {
             fetchTags();
         }
-        // return () => eraseTags();
-        return () => {
-            // console.log('unmountTagsPage');
-            // eraseTags();
-        };
+        return () => eraseError();
         // eslint-disable-next-line
-    }, [accessToken]);
+    }, [accessToken, tags]);
 
     const handleDelete = async (tag) => {
         setTagBeingDeleted(tag);
@@ -40,7 +36,6 @@ const TagList = () => {
         } else {
             setIsBeingUpdated(false);
         }
-
     };
 
     return (
@@ -68,8 +63,6 @@ const TagList = () => {
             )
             }
         </>
-
-
     );
 };
 

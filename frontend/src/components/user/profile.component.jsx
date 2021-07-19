@@ -96,18 +96,18 @@ const Profile = ({ setIsProfileBeingUpdated, setAreCredentialsBeingUpdated }) =>
                         </tr>
                         <tr>
                             <td className='font-weight-bolder'>
-                                Bio
-                            </td>
-                            <td>
-                                {user.bio}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='font-weight-bolder'>
                                 Location
                             </td>
                             <td>
                                 {user.location}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='font-weight-bolder'>
+                                Bio
+                            </td>
+                            <td>
+                                {user.bio}
                             </td>
                         </tr>
                     </tbody>

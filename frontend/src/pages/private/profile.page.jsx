@@ -9,19 +9,18 @@ import UpdateCredentials from '../../components/user/credentials-update.componen
 
 const ProfilePage = () => {
     const appContext = useContext(AppContext);
-    const { accessToken, eraseError, loading, error, user, fetchUser, eraseUser } = appContext;
+    const { accessToken, eraseError, loading, error, user, fetchUser } = appContext;
 
     const [isProfileBeingUpdated, setIsProfileBeingUpdated] = useState(false);
     const [areCredentialsBeingUpdated, setAreCredentialsBeingUpdated] = useState(false);
-    const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
-        if (accessToken) {
+        if (accessToken && !user) {
             fetchUser();
         }
-        return () => eraseUser();
+        return () => eraseError();
         // eslint-disable-next-line
-    }, [accessToken]);
+    }, [accessToken, user]);
 
 
     return (
@@ -49,24 +48,11 @@ const ProfilePage = () => {
                             {error &&
                                 <FadeableAlert msg={error} variant='danger' cb={eraseError} />
                             }
-                            {successMessage &&
-                                <FadeableAlert
-                                    msg={successMessage}
-                                    variant='success'
-                                    cb={() => { setSuccessMessage(''); }}
-                                />
-                            }
                             {isProfileBeingUpdated &&
-                                <UpdateProfile
-                                    setIsProfileBeingUpdated={setIsProfileBeingUpdated}
-                                    setSuccessMessage={setSuccessMessage}
-                                />
+                                <UpdateProfile setIsProfileBeingUpdated={setIsProfileBeingUpdated} />
                             }
                             {areCredentialsBeingUpdated &&
-                                <UpdateCredentials
-                                    setAreCredentialsBeingUpdated={setAreCredentialsBeingUpdated}
-                                    setSuccessMessage={setSuccessMessage}
-                                />
+                                <UpdateCredentials setAreCredentialsBeingUpdated={setAreCredentialsBeingUpdated} />
                             }
                             {user && !isProfileBeingUpdated && !areCredentialsBeingUpdated &&
                                 <Profile

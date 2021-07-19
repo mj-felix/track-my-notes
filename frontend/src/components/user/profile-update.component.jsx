@@ -6,7 +6,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import AppContext from '../../context/app/app.context.js';
 import TooltipPopup from '../misc/tooltip-popup.component.jsx';
 
-const UpdateProfile = ({ setIsProfileBeingUpdated, setSuccessMessage }) => {
+const UpdateProfile = ({ setIsProfileBeingUpdated }) => {
     const appContext = useContext(AppContext);
     const { user, updateUser } = appContext;
 
@@ -39,7 +39,6 @@ const UpdateProfile = ({ setIsProfileBeingUpdated, setSuccessMessage }) => {
         });
         if (isUserUpdated) {
             setIsProfileBeingUpdated(false);
-            setSuccessMessage('Profile updated successfully');
         } else {
             setLoading(false);
         }
@@ -146,17 +145,6 @@ const UpdateProfile = ({ setIsProfileBeingUpdated, setSuccessMessage }) => {
                             onChange={(e) => setHomepage(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId='bio'>
-                        <Form.Label>
-                            Bio
-                        </Form.Label>
-                        <Form.Control
-                            type='text'
-                            placeholder='Enter bio'
-                            value={bio}
-                            onChange={(e) => setBio(e.target.value)}
-                        />
-                    </Form.Group>
                     <Form.Group controlId='location'>
                         <Form.Label>
                             Location
@@ -166,6 +154,17 @@ const UpdateProfile = ({ setIsProfileBeingUpdated, setSuccessMessage }) => {
                             placeholder='Enter location'
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId='bio'>
+                        <Form.Label>
+                            Bio
+                        </Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Enter bio'
+                            value={bio}
+                            onChange={(e) => setBio(e.target.value)}
                         />
                     </Form.Group>
                 </Col>

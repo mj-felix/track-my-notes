@@ -9,7 +9,6 @@ const AddTag = ({ isNotePage }) => {
     const { addTag, note, updateNote, noteLoading } = appContext;
 
     const [tagName, setTagName] = useState('');
-    // const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const addTagToNote = async (tagId) => {
@@ -21,19 +20,15 @@ const AddTag = ({ isNotePage }) => {
         });
     };
 
-
     const handleSubmit = async e => {
         if (tagName !== '') {
             e.preventDefault();
-            // setLoading(true);
             const tagId = await addTag(tagName);
             if (tagId) {
                 if (isNotePage) await addTagToNote(tagId);
                 setTagName('');
-                // setLoading(false);
                 setError(null);
             } else {
-                // setLoading(false);
                 setError('Adding tag failed ... please try again.');
             }
         }

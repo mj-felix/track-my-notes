@@ -25,10 +25,6 @@ const AppState = props => {
 
     const eraseError = () => dispatch({ type: AppActionTypes.ERASE_ERROR });
 
-    const eraseTags = () => dispatch({ type: AppActionTypes.ERASE_TAGS });
-
-    const eraseUser = () => dispatch({ type: AppActionTypes.ERASE_USER });
-
     const eraseNote = () => dispatch({ type: AppActionTypes.ERASE_NOTE });
 
     const eraseNotes = () => dispatch({ type: AppActionTypes.ERASE_NOTES });
@@ -282,6 +278,7 @@ const AppState = props => {
                 config);
             dispatch({
                 type: AppActionTypes.CREATE_NOTE_SUCCESS,
+                payload: res.data
             });
             return res.data;
         } catch (err) {
@@ -371,6 +368,13 @@ const AppState = props => {
         }
     };
 
+    const setNote = (note) => {
+        dispatch({
+            type: AppActionTypes.FETCH_NOTE_SUCCESS,
+            payload: note,
+        });
+    };
+
     const fetchNotes = async (searchCriteria) => {
         // console.log('state.fetchNotes');
         const config = {
@@ -421,16 +425,15 @@ const AppState = props => {
                 accessToken,
                 fetchTags,
                 eraseError,
-                eraseTags,
                 addTag,
                 deleteTag,
                 updateTag,
                 fetchUser,
-                eraseUser,
                 updateUser,
                 createNote,
                 eraseNote,
                 fetchNote,
+                setNote,
                 updateNote,
                 deleteFile,
                 uploadFile,

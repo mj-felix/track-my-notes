@@ -12,7 +12,7 @@ import AddFile from '../../components/note/note-add-file.component.jsx';
 
 const NotePage = ({ match, history }) => {
     const appContext = useContext(AppContext);
-    const { accessToken, note, loading, error, eraseError, createNote, eraseNote, fetchNote, fetchTags, tags, deleteNote } = appContext;
+    const { accessToken, note, loading, error, eraseError, createNote, eraseNote, fetchNote, fetchTags, tags, deleteNote, notes, setNote } = appContext;
 
     const [isBeingUpdated, setIsBeingUpdated] = useState(false);
     const [isDraft, setIsDraft] = useState(false);
@@ -36,23 +36,28 @@ const NotePage = ({ match, history }) => {
                 setIsBeingUpdated(true);
                 setIsDraft(true);
                 history.replace(`/note/${createdNote._id}`);
-                // console.log('note-useEffect-asyncCreateNote');
             }
         };
 
         if (accessToken) {
-            // console.log('note-useEffect');
             if (match.params.id === 'new') {
                 asyncCreateNote();
             } else {
-                fetchNote(match.params.id);
-                fetchTags();
-                // console.log('note-useEffect-fetchNote&Tags');
+                if (tags.length === 0) {
+                    fetchTags();
+                }
+                const fetchedNote = notes && notes.notes && notes.notes.length > 0 && notes.notes.find(note => note._id === match.params.id);
+                console.log(fetchedNote);
+                if (fetchedNote) {
+                    setNote(fetchedNote);
+                } else {
+                    fetchNote(match.params.id);
+                }
             }
         }
         return () => {
+            eraseError();
             eraseNote();
-            // eraseTags();
         };
         // eslint-disable-next-line
     }, [accessToken, match, history]);
@@ -61,7 +66,7 @@ const NotePage = ({ match, history }) => {
         <Container>
             {loading &&
                 <Container className='text-center'>
-                    <Spinner animation="border" size='lg' variant='dark' role="status" />
+                    <Spinner animation="border mb-3" size='lg' variant='dark' role="status" />
                 </Container>
             }
             {error &&

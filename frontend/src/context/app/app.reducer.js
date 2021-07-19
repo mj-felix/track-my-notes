@@ -1,5 +1,17 @@
 import { AppActionTypes } from './app.types.js';
 
+const sortTags = (a, b) => {
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+    if (nameA < nameB) {
+        return -1;
+    }
+    if (nameA > nameB) {
+        return 1;
+    }
+    return 0;
+};
+
 const appReducer = (state, action) => {
     switch (action.type) {
         case AppActionTypes.START_REQUEST:
@@ -22,38 +34,13 @@ const appReducer = (state, action) => {
             return {
                 ...state,
                 loading: false,
-                error: action.payload,
-                tags: []
-            };
-        case AppActionTypes.ERASE_ERROR:
-            return {
-                ...state,
-                error: null
-            };
-        case AppActionTypes.ERASE_TAGS:
-            return {
-                ...state,
-                tags: []
+                error: action.payload
             };
         case AppActionTypes.ADD_TAG_SUCCESS:
             return {
                 ...state,
                 noteLoading: false,
-                tags: [action.payload, ...state.tags].sort(
-                    function (a, b) {
-                        const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-                        const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-                        if (nameA < nameB) {
-                            return -1;
-                        }
-                        if (nameA > nameB) {
-                            return 1;
-                        }
-
-                        // names must be equal
-                        return 0;
-                    }
-                )
+                tags: [action.payload, ...state.tags].sort(sortTags)
             };
         case AppActionTypes.ADD_TAG_FAILURE:
             return {
@@ -67,32 +54,18 @@ const appReducer = (state, action) => {
                     tag => tag._id !== action.payload
                 )
             };
-        case AppActionTypes.DELETE_TAG_FAILURE:
-        case AppActionTypes.UPDATE_TAG_FAILURE:
-            return {
-                ...state,
-                error: action.payload,
-            };
         case AppActionTypes.UPDATE_TAG_SUCCESS:
             return {
                 ...state,
                 tags: state.tags.map(tag =>
                     tag._id === action.payload._id ? action.payload : tag
-                ).sort(
-                    function (a, b) {
-                        const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-                        const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-                        if (nameA < nameB) {
-                            return -1;
-                        }
-                        if (nameA > nameB) {
-                            return 1;
-                        }
-
-                        // names must be equal
-                        return 0;
-                    }
-                )
+                ).sort(sortTags)
+            };
+        case AppActionTypes.DELETE_TAG_FAILURE:
+        case AppActionTypes.UPDATE_TAG_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
             };
         case AppActionTypes.FETCH_USER_SUCCESS:
         case AppActionTypes.UPDATE_USER_SUCCESS:
@@ -102,34 +75,22 @@ const appReducer = (state, action) => {
                 user: action.payload
             };
         case AppActionTypes.FETCH_USER_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                error: action.payload,
-                user: null
-            };
         case AppActionTypes.UPDATE_USER_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
             };
-        case AppActionTypes.ERASE_USER:
-            return {
-                ...state,
-                user: null
-            };
         case AppActionTypes.CREATE_NOTE_SUCCESS:
+        case AppActionTypes.FETCH_NOTE_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                noteLoading: false
+                note: action.payload
             };
-        case AppActionTypes.FETCH_NOTE_SUCCESS:
         case AppActionTypes.UPDATE_NOTE_SUCCESS:
             return {
                 ...state,
-                loading: false,
                 noteLoading: false,
                 note: action.payload
             };
@@ -140,13 +101,12 @@ const appReducer = (state, action) => {
                 note: null
             };
         case AppActionTypes.CREATE_NOTE_FAILURE:
-        case AppActionTypes.FETCH_NOTE_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload,
-                note: null
+                error: action.payload
             };
+        case AppActionTypes.FETCH_NOTE_FAILURE:
         case AppActionTypes.DELETE_NOTE_FAILURE:
             return {
                 ...state,
@@ -196,6 +156,11 @@ const appReducer = (state, action) => {
                 loading: false,
                 error: action.payload,
                 notes: []
+            };
+        case AppActionTypes.ERASE_ERROR:
+            return {
+                ...state,
+                error: null
             };
         default:
             return state;
