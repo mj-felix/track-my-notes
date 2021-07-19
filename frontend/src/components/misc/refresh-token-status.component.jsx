@@ -47,7 +47,6 @@ const RefreshTokenStatus = () => {
         const time1hInSeconds = 1800;
         const time30minInSeconds = 900;
         if (decoded.exp - now < time30minInSeconds) {
-            if (status === status[4]) console.log('eq');
             setStatus(statuses[4]);
         } else if (decoded.exp - now < time1hInSeconds) {
             setStatus(statuses[3]);

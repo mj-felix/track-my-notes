@@ -15,7 +15,6 @@ const PublicNote = ({ note, match, isTile }) => {
     });
 
     const generateColor = (color) => {
-        // console.log('generateColor');
         const colors = ['primary', 'success', 'info', 'warning'];
         const index = color % 4;
         return colors[index];

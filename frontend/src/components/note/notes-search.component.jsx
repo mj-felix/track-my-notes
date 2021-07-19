@@ -21,7 +21,6 @@ const SearchNotes = ({ history, location }) => {
     if (!searchCriteria.search) {
         searchCriteria.search = '';
     }
-    // console.log(searchCriteria.tags, searchCriteria.search);
 
     const [keyword, setKeyword] = useState(searchCriteria.search);
 

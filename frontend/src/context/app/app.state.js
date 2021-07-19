@@ -105,7 +105,6 @@ const AppState = props => {
     };
 
     const fetchTags = async () => {
-        // console.log('state.fetchTags');
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -262,7 +261,6 @@ const AppState = props => {
     };
 
     const createNote = async (note) => {
-        // console.log('state.createNote');
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -345,7 +343,6 @@ const AppState = props => {
     };
 
     const fetchNote = async (id) => {
-        // console.log('state.fetchNote');
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -376,7 +373,6 @@ const AppState = props => {
     };
 
     const fetchNotes = async (searchCriteria) => {
-        // console.log('state.fetchNotes');
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -386,7 +382,6 @@ const AppState = props => {
 
         try {
             let url = '/api/v1/notes?pageSize=12&' + searchCriteria;
-            console.log(searchCriteria, url);
             dispatch({ type: AppActionTypes.START_REQUEST });
             const res = await axios.get(url, config);
             if (res.data.pages > 0 && res.data.pages >= res.data.page) {

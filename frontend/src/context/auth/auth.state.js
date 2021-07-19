@@ -100,7 +100,6 @@ const AuthState = props => {
                 payload: res.data
             });
         } catch (err) {
-            console.log(err.response);
             dispatch({
                 type: AuthActionTypes.AUTH_FAIL,
                 payload: err.response.status !== 500 ? err.response.data : { message: 'Something went wrong ... please try again later.' }

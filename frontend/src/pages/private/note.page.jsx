@@ -22,7 +22,6 @@ const NotePage = ({ match, history }) => {
         setDeleteLoading(true);
         const isNoteDeleted = await deleteNote(note._id);
         if (isNoteDeleted) {
-            // console.log(history);
             history.replace('/notes');
         } else {
             setDeleteLoading(false);
@@ -47,7 +46,6 @@ const NotePage = ({ match, history }) => {
                     fetchTags();
                 }
                 const fetchedNote = notes && notes.notes && notes.notes.length > 0 && notes.notes.find(note => note._id === match.params.id);
-                console.log(fetchedNote);
                 if (fetchedNote) {
                     setNote(fetchedNote);
                 } else {
