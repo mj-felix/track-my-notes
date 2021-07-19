@@ -276,7 +276,6 @@ const AppState = props => {
                 config);
             dispatch({
                 type: AppActionTypes.CREATE_NOTE_SUCCESS,
-                payload: res.data
             });
             return res.data;
         } catch (err) {

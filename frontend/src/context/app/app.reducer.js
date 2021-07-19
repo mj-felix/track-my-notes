@@ -82,6 +82,10 @@ const appReducer = (state, action) => {
                 error: action.payload,
             };
         case AppActionTypes.CREATE_NOTE_SUCCESS:
+            return {
+                ...state,
+                loading: false
+            };
         case AppActionTypes.FETCH_NOTE_SUCCESS:
             return {
                 ...state,
