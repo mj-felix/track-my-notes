@@ -22,7 +22,7 @@ const AuthState = props => {
         console.log(isProfileNameInvalid);
         if (isProfileNameInvalid) {
             dispatch({
-                type: AuthActionTypes.AUTH_FAIL,
+                type: AuthActionTypes.AUTH_FAILURE,
                 payload: { 'message': isProfileNameInvalid }
             });
             return;
@@ -31,7 +31,7 @@ const AuthState = props => {
         const isPasswordInvalid = validatePassword(password);
         if (isPasswordInvalid) {
             dispatch({
-                type: AuthActionTypes.AUTH_FAIL,
+                type: AuthActionTypes.AUTH_FAILURE,
                 payload: { 'message': isPasswordInvalid }
             });
             return;
@@ -40,7 +40,7 @@ const AuthState = props => {
         // passwords match validation
         if (password !== repeatPassword) {
             dispatch({
-                type: AuthActionTypes.AUTH_FAIL,
+                type: AuthActionTypes.AUTH_FAILURE,
                 payload: { 'message': 'Passwords do not match' }
             });
             return;
@@ -73,7 +73,7 @@ const AuthState = props => {
             });
         } catch (err) {
             dispatch({
-                type: AuthActionTypes.AUTH_FAIL,
+                type: AuthActionTypes.AUTH_FAILURE,
                 payload: err.response.status !== 500 ? err.response.data : { message: 'Something went wrong ... please try again later.' }
             });
         }
@@ -100,7 +100,7 @@ const AuthState = props => {
             });
         } catch (err) {
             dispatch({
-                type: AuthActionTypes.AUTH_FAIL,
+                type: AuthActionTypes.AUTH_FAILURE,
                 payload: err.response.status !== 500 ? err.response.data : { message: 'Something went wrong ... please try again later.' }
             });
         }

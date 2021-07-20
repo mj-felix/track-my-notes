@@ -24,7 +24,7 @@ const authReducer = (state, action) => {
                 ...state,
                 accessToken: action.payload.accessToken
             };
-        case AuthActionTypes.AUTH_FAIL:
+        case AuthActionTypes.AUTH_FAILURE:
             return {
                 loading: false,
                 error: action.payload,
