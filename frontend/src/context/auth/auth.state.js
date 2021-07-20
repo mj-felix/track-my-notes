@@ -19,7 +19,6 @@ const AuthState = props => {
 
     const register = async ({ profileName, email, password, repeatPassword }) => {
         const isProfileNameInvalid = validateProfileName(profileName);
-        console.log(isProfileNameInvalid);
         if (isProfileNameInvalid) {
             dispatch({
                 type: AuthActionTypes.AUTH_FAILURE,
