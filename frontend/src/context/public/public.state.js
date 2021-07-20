@@ -60,10 +60,6 @@ const PublicState = props => {
                     payload: 'No public notes found.'
                 });
             }
-            // dispatch({
-            //     type: PublicActionTypes.FETCH_PUBLIC_NOTES_SUCCESS,
-            //     payload: res.data
-            // });
         } catch (err) {
             dispatch({
                 type: PublicActionTypes.FETCH_PUBLIC_NOTES_FAILURE,

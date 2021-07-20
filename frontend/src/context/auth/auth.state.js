@@ -37,7 +37,6 @@ const AuthState = props => {
             return;
         }
 
-        // passwords match validation
         if (password !== repeatPassword) {
             dispatch({
                 type: AuthActionTypes.AUTH_FAILURE,
