@@ -338,7 +338,7 @@ describe('User profile retrieval', () => {
         // WHEN:
         const response = await request
             .get(endpoint)
-            .set("Authorization", `Bearer ${accessToken}`);;
+            .set("Authorization", `Bearer ${accessToken}`);
 
         // THEN:
         expect(response.status).to.eql(401);

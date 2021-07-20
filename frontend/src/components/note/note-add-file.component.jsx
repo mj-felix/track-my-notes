@@ -26,4 +26,4 @@ const AddFile = () => {
     );
 };
 
-export default AddFile;;
+export default AddFile;

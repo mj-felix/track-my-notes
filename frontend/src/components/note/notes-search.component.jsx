@@ -116,4 +116,4 @@ const SearchNotes = ({ history, location }) => {
     );
 };
 
-export default SearchNotes;;
+export default SearchNotes;

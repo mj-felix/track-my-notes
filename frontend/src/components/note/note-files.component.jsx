@@ -65,4 +65,4 @@ const NoteFiles = () => {
     );
 };
 
-export default NoteFiles;;
+export default NoteFiles;
