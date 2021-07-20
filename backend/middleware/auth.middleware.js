@@ -73,7 +73,7 @@ module.exports.noteBelongsToUser = asyncHandler(async (req, res, next) => {
 
 module.exports.tagsBelongToUser = asyncHandler(async (req, res, next) => {
     const { tags: sentTags } = req.body;
-    if (sentTags && sentTags.length) {
+    if (sentTags && sentTags.length > 0) {
         let userTags = await Tag.find({ user: req.user._id }).select('_id');
         userTags = userTags.map(tag => tag._id.toString());
         const allTagsBelongToUser = req.body.tags.every(tag => userTags.includes(tag));

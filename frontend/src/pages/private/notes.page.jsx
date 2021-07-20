@@ -14,7 +14,7 @@ const NotesPage = ({ location, history }) => {
     useEffect(() => {
         if (accessToken) {
             fetchNotes(location.search.substring(1, location.search.length));
-            if (!tags.length) {
+            if (tags.length === 0) {
                 fetchTags();
             }
         }

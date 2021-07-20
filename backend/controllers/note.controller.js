@@ -47,7 +47,7 @@ module.exports.updateNote = asyncHandler(async (req, res) => {
 module.exports.deleteNote = asyncHandler(async (req, res) => {
     const note = await Note.findById(req.params.id);
     // if(!note) covered by noteBelongsToUser middleware
-    if (note.files.length) {
+    if (note.files.length > 0) {
         const deleteParam = {
             Bucket: process.env.S3_BUCKET,
             Delete: {

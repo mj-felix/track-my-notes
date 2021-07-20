@@ -8,7 +8,7 @@ const AddFile = () => {
     const { uploadFile, noteLoading, note } = appContext;
 
     const handleFileSelect = (e) => {
-        if (e.target.files.length) {
+        if (e.target.files.length > 0) {
             uploadFile(note._id, e.target.files[0]);
             e.target.value = null;
         }

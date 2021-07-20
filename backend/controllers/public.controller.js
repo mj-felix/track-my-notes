@@ -11,23 +11,16 @@ module.exports.getPublicUserProfile = asyncHandler(async (req, res) => {
         .select('-password -__v -refreshToken -isAdmin -createdAt -updatedAt');
     if (user) {
         const userNotes = await Note.find({ user: user._id, isPublic: true });
-        const publicNotesExist = userNotes.length ? true : false;
-        //     .select('-__v')
-        //     .sort({ isSticky: 'desc', madePublicAt: 'desc', updatedAt: 'desc' })
-        //     .populate('tags', 'name');
+        const publicNotesExist = !!userNotes.length;
         if (user.isPublic) {
             delete user._doc._id;
             user._doc.publicNotesExist = publicNotesExist;
-            // user._doc.notes = userNotes;
         } else {
-            // res.status(403);
-            // throw new Error('User not public');
             user = {
                 'isPublic': false,
                 'profileName': user.profileName,
                 'publicNotesExist': publicNotesExist,
             };
-            // user.notes = userNotes;
         }
         res.json(user);
     } else {
