@@ -95,14 +95,23 @@ const AppState = props => {
         }
     };
 
-    const fetchTags = async () => {
+    const fetchTags = async (isTagPage) => {
         try {
             dispatch({ type: AppActionTypes.START_REQUEST });
             const res = await axios.get('/api/v1/tags', config);
-            dispatch({
-                type: AppActionTypes.FETCH_TAGS_SUCCESS,
-                payload: res.data
-            });
+            if (res.data && res.data.length === 0) {
+                if (isTagPage) {
+                    dispatch({
+                        type: AppActionTypes.FETCH_TAGS_FAILURE,
+                        payload: 'No tags found. Add a new tag.'
+                    });
+                }
+            } else {
+                dispatch({
+                    type: AppActionTypes.FETCH_TAGS_SUCCESS,
+                    payload: res.data
+                });
+            }
         } catch (err) {
             dispatch({
                 type: AppActionTypes.FETCH_TAGS_FAILURE,
@@ -305,7 +314,7 @@ const AppState = props => {
             } else {
                 dispatch({
                     type: AppActionTypes.FETCH_NOTES_FAILURE,
-                    payload: 'No notes found. Please select different search criteria.'
+                    payload: 'No notes found. Add a note or change search criteria.'
                 });
             }
             dispatch({

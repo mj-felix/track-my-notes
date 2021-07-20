@@ -28,15 +28,11 @@ const NotesPage = ({ location, history }) => {
     return (
         <Row>
             <Col xs={12} sm={12} md={4} lg={3} xl={3} className='mb-3' style={{ minHeight: '100px' }}>
-                {tags.length > 0 &&
-                    <SearchNotes history={history} location={location} />
-                }
+                <SearchNotes history={history} location={location} />
             </Col>
             {error &&
                 <Col>
-                    <Container>
-                        <FadeableAlert msg={error} variant='danger' cb={eraseError} />
-                    </Container>
+                    <FadeableAlert msg={error} variant='danger' cb={eraseError} />
                 </Col>
             }
             {loading &&

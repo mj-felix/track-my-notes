@@ -16,11 +16,11 @@ const TagList = () => {
 
     useEffect(() => {
         if (accessToken && tags.length === 0) {
-            fetchTags();
+            fetchTags(true);
         }
         return () => eraseError();
         // eslint-disable-next-line
-    }, [accessToken, tags]);
+    }, [accessToken]);
 
     const handleDelete = async (tag) => {
         setTagBeingDeleted(tag);

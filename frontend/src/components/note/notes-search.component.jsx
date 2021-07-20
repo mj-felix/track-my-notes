@@ -10,8 +10,6 @@ const SearchNotes = ({ history, location }) => {
     const appContext = useContext(AppContext);
     const { tags, loading } = appContext;
 
-
-
     const searchCriteria = queryString.parse(location.search);
     if (searchCriteria.tags) {
         searchCriteria.tags = searchCriteria.tags.split(',');
