@@ -37,22 +37,20 @@ const PublicNotes = ({ match, location }) => {
                     <FadeableAlert msg={error} variant='danger' cb={eraseError} />
                 </Container>
             }
-            <Container>
-                <Card className='mb-3'>
-                    <Card.Body className='py-2 bg-light'>
-                        <Link to={`/user/${match.params.profileName}`}>
-                            {match.params.profileName}
-                        </Link>
-                        {' '}&rarr;{' '}
-                        <Link to={`/user/${match.params.profileName}/notes`}>
-                            Notes
-                        </Link>
-                        {' '}&rarr; {note.title}
-                    </Card.Body>
-                </Card>
-            </Container>
             {note &&
                 <Container>
+                    <Card className='mb-3'>
+                        <Card.Body className='py-2 bg-light'>
+                            <Link to={`/user/${match.params.profileName}`}>
+                                {match.params.profileName}
+                            </Link>
+                            {' '}&rarr;{' '}
+                            <Link to={`/user/${match.params.profileName}/notes`}>
+                                Notes
+                            </Link>
+                            {' '}&rarr; {note.title}
+                        </Card.Body>
+                    </Card>
                     <PublicNote note={note} match={match} location={location} />
                 </Container>
             }
