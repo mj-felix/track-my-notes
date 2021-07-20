@@ -45,7 +45,9 @@ const NoteTile = ({ note }) => {
                             msg='Note is public'
                             placement='top'
                         >
-                            <Badge variant='success'>P</Badge>
+                            <Badge variant='success'>
+                                <a href={`/user/${note.user.profileName}/notes/${note._id}`} target='_blank' rel='noreferrer'>P</a>
+                            </Badge>
                         </TooltipPopup>
                     }
                     {note.isSticky &&
