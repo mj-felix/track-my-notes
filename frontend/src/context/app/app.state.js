@@ -1,11 +1,11 @@
 import React, { useReducer, useContext } from 'react';
 import axios from 'axios';
+
 import AuthContext from '../auth/auth.context.js';
 import AppContext from './app.context.js';
 import appReducer from './app.reducer.js';
-import {
-    AppActionTypes
-} from './app.types.js';
+import { AppActionTypes } from './app.types.js';
+import { validateProfileName, validatePassword } from '../../utils/validateUser.js';
 
 const AppState = props => {
     const authContext = useContext(AuthContext);
@@ -30,26 +30,24 @@ const AppState = props => {
     const eraseNotes = () => dispatch({ type: AppActionTypes.ERASE_NOTES });
 
     const updateUser = async (user) => {
-        // profile name validation
-        const profileNameRegex = /^[a-zA-Z-_]{3,}$/;
-        if (!profileNameRegex.test(user.profileName)) {
+        const isProfileNameInvalid = validateProfileName(user.profileName);
+        if (isProfileNameInvalid) {
             dispatch({
                 type: AppActionTypes.UPDATE_USER_FAILURE,
-                payload: 'Profile name must have minimum 3 characters. Only letters, dash (-) and underscore(_) are allowed.'
-            });
-            return;
-        }
-        // password validation
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@!%*?&-_+])[A-Za-z\d#@!%*?&-_+]{10,}$/;
-        if (user.password && !passwordRegex.test(user.password)) {
-            dispatch({
-                type: AppActionTypes.UPDATE_USER_FAILURE,
-                payload: 'Password must have minimum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character #@!%*?&-_+'
+                payload: isProfileNameInvalid
             });
             return;
         }
 
-        // passwords match validation
+        const isPasswordInvalid = validatePassword(user.password);
+        if (isPasswordInvalid) {
+            dispatch({
+                type: AppActionTypes.UPDATE_USER_FAILURE,
+                payload: isPasswordInvalid
+            });
+            return;
+        }
+
         if (user.password && user.password !== user.repeatPassword) {
             dispatch({
                 type: AppActionTypes.UPDATE_USER_FAILURE,

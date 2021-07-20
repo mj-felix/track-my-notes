@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
+
 import AuthContext from './auth.context.js';
 import authReducer from './auth.reducer.js';
-import {
-    AuthActionTypes
-} from './auth.types.js';
+import { AuthActionTypes } from './auth.types.js';
+import { validateProfileName, validatePassword } from '../../utils/validateUser.js';
 
 const AuthState = props => {
     const initialState = {
@@ -18,22 +18,21 @@ const AuthState = props => {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     const register = async ({ profileName, email, password, repeatPassword }) => {
-        // profile name validation
-        const profileNameRegex = /^[a-zA-Z-_]{3,}$/;
-        if (!profileNameRegex.test(profileName)) {
+        const isProfileNameInvalid = validateProfileName(profileName);
+        console.log(isProfileNameInvalid);
+        if (isProfileNameInvalid) {
             dispatch({
                 type: AuthActionTypes.AUTH_FAIL,
-                payload: { 'message': 'Profile name must have minimum 3 characters. Only letters, dash (-) and underscore(_) are allowed.' }
+                payload: { 'message': isProfileNameInvalid }
             });
             return;
         }
 
-        // password validation
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@!%*?&-_+])[A-Za-z\d#@!%*?&-_+]{10,}$/;
-        if (!passwordRegex.test(password)) {
+        const isPasswordInvalid = validatePassword(password);
+        if (isPasswordInvalid) {
             dispatch({
                 type: AuthActionTypes.AUTH_FAIL,
-                payload: { 'message': 'Password must have minimum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character #@!%*?&-_+' }
+                payload: { 'message': isPasswordInvalid }
             });
             return;
         }
