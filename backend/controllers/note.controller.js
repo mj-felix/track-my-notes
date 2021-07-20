@@ -86,6 +86,7 @@ module.exports.getNotes = asyncHandler(async (req, res) => {
         .select('-__v')
         .sort({ isSticky: 'desc', madePublicAt: 'desc', updatedAt: 'desc' })
         .populate('tags', 'name')
+        .populate('user', 'profileName')
         .limit(pageSize)
         .skip(pageSize * (page - 1));
     res.json({ notes, notesCount, page, pageSize, pages: Math.ceil(notesCount / pageSize) });
