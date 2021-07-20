@@ -26,6 +26,7 @@ const PublicNotes = ({ match, location }) => {
 
     useEffect(() => {
         asyncFetchPublicNotes();
+        return () => eraseError();
         // eslint-disable-next-line
     }, [location]);
 

@@ -16,6 +16,7 @@ const PublicProfile = ({ match }) => {
         if (!profile || profile.profileName !== match.params.profileName) {
             fetchPublicProfile(match.params.profileName);
         }
+        return () => eraseError();
         // eslint-disable-next-line
     }, []);
 

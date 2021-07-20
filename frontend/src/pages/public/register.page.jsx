@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
@@ -25,6 +25,11 @@ const RegisterPage = () => {
             repeatPassword
         });
     };
+
+    useEffect(() => {
+        return () => eraseError();
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <Container>

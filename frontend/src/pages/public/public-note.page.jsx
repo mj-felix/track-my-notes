@@ -22,6 +22,7 @@ const PublicNotes = ({ match, location }) => {
         else {
             fetchPublicNote(match.params.profileName, match.params.noteId);
         }
+        return () => eraseError();
         // eslint-disable-next-line
     }, []);
 
