@@ -15,13 +15,13 @@ const PublicState = props => {
 
     const [state, dispatch] = useReducer(publicReducer, initialState);
 
-    const fetchPublicProfile = async (profileName) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
 
+    const fetchPublicProfile = async (profileName) => {
         try {
             dispatch({ type: PublicActionTypes.START_REQUEST });
 
@@ -42,12 +42,6 @@ const PublicState = props => {
     };
 
     const fetchPublicNotes = async (profileName, searchCriteria) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
         try {
             dispatch({ type: PublicActionTypes.START_REQUEST });
 
@@ -79,12 +73,6 @@ const PublicState = props => {
     };
 
     const fetchPublicNote = async (profileName, noteId) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
         try {
             dispatch({ type: PublicActionTypes.START_REQUEST });
 

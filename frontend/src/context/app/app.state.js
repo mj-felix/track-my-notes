@@ -11,6 +11,13 @@ const AppState = props => {
     const authContext = useContext(AuthContext);
     const { accessToken } = authContext;
 
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+        }
+    };
+
     const initialState = {
         loading: false,
         noteLoading: false,
@@ -56,13 +63,6 @@ const AppState = props => {
             return;
         }
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             const res = await axios.put('/api/v1/users/profile', user, config);
             dispatch({
@@ -80,13 +80,6 @@ const AppState = props => {
     };
 
     const fetchUser = async () => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({ type: AppActionTypes.START_REQUEST });
             const res = await axios.get('/api/v1/users/profile', config);
@@ -103,13 +96,6 @@ const AppState = props => {
     };
 
     const fetchTags = async () => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({ type: AppActionTypes.START_REQUEST });
             const res = await axios.get('/api/v1/tags', config);
@@ -126,13 +112,6 @@ const AppState = props => {
     };
 
     const updateTag = async (id, name) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             const res = await axios.put(
                 `/api/v1/tags/${id}`,
@@ -153,13 +132,6 @@ const AppState = props => {
     };
 
     const addTag = async (name) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({
                 type: AppActionTypes.START_NOTE_REQUEST,
@@ -182,13 +154,6 @@ const AppState = props => {
     };
 
     const deleteTag = async (id) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             await axios.delete(
                 `/api/v1/tags/${id}`,
@@ -206,13 +171,6 @@ const AppState = props => {
     };
 
     const deleteFile = async (noteId, storedFileName) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({ type: AppActionTypes.START_NOTE_REQUEST });
             const res = await axios.delete(
@@ -231,13 +189,6 @@ const AppState = props => {
     };
 
     const uploadFile = async (noteId, file) => {
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({ type: AppActionTypes.START_NOTE_REQUEST });
             const formData = new FormData();
@@ -259,13 +210,6 @@ const AppState = props => {
     };
 
     const createNote = async (note) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({ type: AppActionTypes.START_REQUEST });
             const res = await axios.post(
@@ -286,13 +230,6 @@ const AppState = props => {
     };
 
     const deleteNote = async (id) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({ type: AppActionTypes.START_NOTE_REQUEST });
             await axios.delete(
@@ -312,13 +249,6 @@ const AppState = props => {
     };
 
     const updateNote = async (id, note) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({ type: AppActionTypes.START_NOTE_REQUEST });
             const res = await axios.put(
@@ -340,13 +270,6 @@ const AppState = props => {
     };
 
     const fetchNote = async (id) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             dispatch({ type: AppActionTypes.START_REQUEST });
             const res = await axios.get(`/api/v1/notes/${id}`, config);
@@ -370,13 +293,6 @@ const AppState = props => {
     };
 
     const fetchNotes = async (searchCriteria) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            }
-        };
-
         try {
             let url = '/api/v1/notes?pageSize=12&' + searchCriteria;
             dispatch({ type: AppActionTypes.START_REQUEST });
