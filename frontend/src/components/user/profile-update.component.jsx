@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Form, Button, Spinner, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 import AppContext from '../../context/app/app.context.js';
 import TooltipPopup from '../misc/tooltip-popup.component.jsx';
@@ -185,6 +186,10 @@ const UpdateProfile = ({ setIsProfileBeingUpdated }) => {
             </Row>
         </Form>
     );
+};
+
+UpdateProfile.propTypes = {
+    setIsProfileBeingUpdated: PropTypes.func.isRequired,
 };
 
 export default UpdateProfile;

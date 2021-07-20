@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Table, Row, Col, Button, Badge } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 import AppContext from '../../context/app/app.context.js';
 
@@ -128,6 +129,11 @@ const Profile = ({ setIsProfileBeingUpdated, setAreCredentialsBeingUpdated }) =>
         </Row>
 
     );
+};
+
+Profile.propTypes = {
+    setIsProfileBeingUpdated: PropTypes.func.isRequired,
+    setAreCredentialsBeingUpdated: PropTypes.func.isRequired,
 };
 
 export default Profile;

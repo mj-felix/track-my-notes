@@ -3,6 +3,7 @@ import { Badge, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import TooltipPopup from '../misc/tooltip-popup.component.jsx';
 
@@ -94,4 +95,8 @@ const NoteTile = ({ note }) => {
     );
 };
 
-export default NoteTile;;
+NoteTile.propTypes = {
+    note: PropTypes.object.isRequired,
+};
+
+export default NoteTile;

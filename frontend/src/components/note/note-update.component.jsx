@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Row, Col, Button, Spinner, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 import AppContext from '../../context/app/app.context.js';
 import TooltipPopup from '../misc/tooltip-popup.component.jsx';
@@ -168,6 +169,14 @@ const UpdateNote = ({ setIsBeingUpdated, isDraft, setIsDraft, handleDelete, dele
             </Form>
         </>
     );
+};
+
+UpdateNote.propTypes = {
+    setIsBeingUpdated: PropTypes.func.isRequired,
+    isDraft: PropTypes.bool.isRequired,
+    setIsDraft: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired,
+    deleteLoading: PropTypes.bool.isRequired,
 };
 
 export default UpdateNote;

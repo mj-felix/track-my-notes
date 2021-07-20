@@ -2,6 +2,7 @@ import React from 'react';
 import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import queryString from 'query-string';
+import PropTypes from 'prop-types';
 
 const Paginate = ({ pages, page, location, profileName }) => {
     const searchCriteria = queryString.parse(location.search);
@@ -27,6 +28,12 @@ const Paginate = ({ pages, page, location, profileName }) => {
             </Pagination >
         )
     );
+};
+
+Paginate.propTypes = {
+    pages: PropTypes.number.isRequired,
+    page: PropTypes.number.isRequired,
+    profileName: PropTypes.string,
 };
 
 export default Paginate;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Spinner } from 'react-bootstrap';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import PropTypes from 'prop-types';
 
 const UpdateTag = ({ handleUpdate, tag, cancelUpdate, isBeingUpdated }) => {
 
@@ -36,6 +36,13 @@ const UpdateTag = ({ handleUpdate, tag, cancelUpdate, isBeingUpdated }) => {
             </td>
         </tr>
     );
+};
+
+UpdateTag.propTypes = {
+    tag: PropTypes.object.isRequired,
+    handleUpdate: PropTypes.func.isRequired,
+    cancelUpdate: PropTypes.func.isRequired,
+    isBeingUpdated: PropTypes.bool.isRequired,
 };
 
 export default UpdateTag;

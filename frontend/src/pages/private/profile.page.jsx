@@ -56,7 +56,6 @@ const ProfilePage = () => {
                             }
                             {user && !isProfileBeingUpdated && !areCredentialsBeingUpdated &&
                                 <Profile
-                                    user={user}
                                     setIsProfileBeingUpdated={setIsProfileBeingUpdated}
                                     setAreCredentialsBeingUpdated={setAreCredentialsBeingUpdated}
                                 />

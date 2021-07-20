@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Form, Button, Spinner, Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import AppContext from '../../context/app/app.context.js';
 
@@ -80,6 +81,10 @@ const UpdateCredentials = ({ setAreCredentialsBeingUpdated }) => {
             </Row>
         </Form>
     );
+};
+
+UpdateCredentials.propTypes = {
+    setAreCredentialsBeingUpdated: PropTypes.func.isRequired,
 };
 
 export default UpdateCredentials;

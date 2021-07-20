@@ -3,6 +3,7 @@ import { Row, Col, Button, Badge, Spinner } from 'react-bootstrap';
 import dateFormat from 'dateformat';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 import AppContext from '../../context/app/app.context.js';
 
@@ -75,4 +76,10 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
     );
 };
 
-export default Note;;
+Note.propTypes = {
+    setIsBeingUpdated: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired,
+    deleteLoading: PropTypes.bool.isRequired,
+};
+
+export default Note;

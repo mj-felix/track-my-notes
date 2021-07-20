@@ -1,6 +1,8 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
@@ -24,6 +26,13 @@ const Tag = ({ tag, handleDelete, isBeingDeleted, setTagToBeUpdated }) => {
             </td>
         </tr >
     );
+};
+
+Tag.propTypes = {
+    tag: PropTypes.object.isRequired,
+    handleDelete: PropTypes.func,
+    setTagToBeUpdated: PropTypes.func,
+    isBeingDeleted: PropTypes.bool,
 };
 
 export default Tag;

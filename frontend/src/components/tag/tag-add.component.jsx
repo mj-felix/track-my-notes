@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import AppContext from '../../context/app/app.context.js';
 import FadeableAlert from '../misc/fadeable-alert.component.jsx';
@@ -73,6 +74,10 @@ const AddTag = ({ isNotePage }) => {
             </Form>
         </>
     );
+};
+
+AddTag.propTypes = {
+    isNotePage: PropTypes.bool,
 };
 
 export default AddTag;
