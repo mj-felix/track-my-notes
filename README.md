@@ -1,4 +1,4 @@
-# TrackMyNotes by MJ Felixq
+# TrackMyNotes by MJ Felix
 
 ## Table of Contents
 
@@ -83,7 +83,7 @@ Selection of components is inspired by the Udemy courses [React Front to Back](h
  - React
  - Context API (for state management)
  - React Router
- - Bootstrap(via React Bootstrap and [Pulse theme from bootswatch.com](https://bootswatch.com/4/pulse/))
+ - Bootstrap (via React Bootstrap and [Pulse theme from bootswatch.com](https://bootswatch.com/4/pulse/))
  - Others ([see package.json](https://github.com/mj-felix/track-my-notes/blob/main/frontend/package.json))
 
 ## Installation Notes
