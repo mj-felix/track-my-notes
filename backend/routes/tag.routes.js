@@ -14,21 +14,21 @@ const {
 
 router.route('/')
     // @desc    Get tags for logged in user
-    // @route   GET /api/tags
+    // @route   GET /api/v1/tags
     // @access  Private
     .get(verifyAccessToken, getTags)
     // @desc    Create tag for logged in user
-    // @route   POST /api/tags
+    // @route   POST /api/v1/tags
     // @access  Private
     .post(verifyAccessToken, createTag);
 
 router.route('/:id')
-    // @desc    Get tag for logged in user
-    // @route   GET /api/tags/:id
+    // @desc    Update tag for logged in user
+    // @route   PUT /api/v1/tags/:id
     // @access  Private
     .put(verifyAccessToken, tagBelongsToUser, updateTag)
-    // @desc    Update tag for logged in user
-    // @route   PUT /api/tags/:id
+    // @desc    Delete tag for logged in user
+    // @route   DELETE /api/v1/tags/:id
     // @access  Private
     .delete(verifyAccessToken, tagBelongsToUser, deleteTag);
 

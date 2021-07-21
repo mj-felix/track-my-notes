@@ -7,17 +7,17 @@ const {
 } = require('../controllers/public.controller.js');
 
 // @desc    Retrieve user public profile
-// @route   GET /api/public/:profilename
+// @route   GET /api/v1/public/:profilename
 // @access  Public
 router.get('/:profilename', getPublicUserProfile);
 
 // @desc    Retrieve user's public notes
-// @route   GET /api/public/:profilename/notes
+// @route   GET /api/v1/public/:profilename/notes
 // @access  Public
 router.get('/:profilename/notes/', getPublicNotes);
 
 // @desc    Retrieve user's public note
-// @route   GET /api/public/:profilename/notes/:noteid
+// @route   GET /api/v1/public/:profilename/notes/:noteid
 // @access  Public
 router.get('/:profilename/notes/:id', getPublicNote);
 

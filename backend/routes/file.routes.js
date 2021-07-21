@@ -16,12 +16,12 @@ const {
 const { uploadS3 } = require('../middleware/file.middleware.js');
 
 // @desc    Upload file for a given note
-// @route   POST /api/notes/:id/files
+// @route   POST /api/v1/notes/:id/files
 // @access  Private
 router.post('/:id/files', verifyAccessToken, isSpaceAvailable, noteBelongsToUser, uploadS3, uploadFile);
 
 // @desc    Delete file for a given note
-// @route   DELETE /api/notes/:id/files/:storedFileName
+// @route   DELETE /api/v1/notes/:id/files/:storedFileName
 // @access  Private
 router.delete('/:id/files/:storedFileName', verifyAccessToken, noteBelongsToUser, fileBelongsToNote, deleteFile);
 

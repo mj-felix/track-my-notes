@@ -16,25 +16,25 @@ const {
 
 router.route('/')
     // @desc    Get notes for logged in user
-    // @route   GET /api/notes
+    // @route   GET /api/v1/notes
     // @access  Private
     .get(verifyAccessToken, getNotes)
     // @desc    Create note for logged in user
-    // @route   POST /api/notes
+    // @route   POST /api/v1/notes
     // @access  Private
     .post(verifyAccessToken, tagsBelongToUser, createNote);
 
 router.route('/:id')
     // @desc    Update note for logged in user
-    // @route   PUT /api/notes/:id
+    // @route   PUT /api/v1/notes/:id
     // @access  Private
     .put(verifyAccessToken, noteBelongsToUser, tagsBelongToUser, updateNote)
     // @desc    Delete note for logged in user
-    // @route   DELETE /api/notes/:id
+    // @route   DELETE /api/v1/notes/:id
     // @access  Private
     .delete(verifyAccessToken, noteBelongsToUser, deleteNote)
     // @desc    Get note for logged in user
-    // @route   GET /api/notes/:id
+    // @route   GET /api/v1/notes/:id
     // @access  Private
     .get(verifyAccessToken, noteBelongsToUser, getNote);
 

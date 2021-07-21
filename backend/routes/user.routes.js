@@ -9,11 +9,11 @@ const { verifyAccessToken } = require('../middleware/auth.middleware.js');
 
 router.route('/profile')
     // @desc    Get logged in user profile
-    // @route   GET /api/users/profile
+    // @route   GET /api/v1/users/profile
     // @access  Private
     .get(verifyAccessToken, getUserProfile)
     // @desc    Update logged in user profile
-    // @route   PUT /api/users/profile
+    // @route   PUT /api/v1/users/profile
     // @access  Private
     .put(verifyAccessToken, updateUserProfile);
 
