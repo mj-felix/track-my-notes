@@ -1,4 +1,4 @@
-# TrackMyNotes by MJ Felix
+# TrackMyNotes by MJ Felixq
 
 ## Table of Contents
 
@@ -88,7 +88,7 @@ Selection of components is inspired by the Udemy courses [React Front to Back](h
 
 ## Installation Notes
 
-Below components are required to run the application locally (frontend app accessible via [localhost:3000](http://localhost:3000/), APIs accessible via [localhost:5000/api/v1/](http://localhost:5000/api/v1/)):
+Below components are required to run the application locally (frontend app accessible via [localhost:3000](http://localhost:3000), APIs - via [localhost:5000](http://localhost:5000)):
 
 ### Node.js
 
@@ -104,14 +104,14 @@ To install MongoDB Community Edition follow the instructions for your platform o
 ```
 ADMIN_EMAIL=your email
 ```
-This will allow to set the user as Admin when this email is used during registration.
+This will allow to set the user as Admin when this email is used during registration. There is no specific functionality for Admin user at present.
 
 ```
 JWT_SECRET=secret123
 JWT_ACCESS_TOKEN_EXPIRES_IN=20m
 JWT_REFRESH_TOKEN_EXPIRES_IN=8h
 ```
-This will allow the backend application to generate JSON Web Token and set expiry time for access and refresh tokens.
+This will allow the backend app to generate JSON Web Token and set expiry time for access and refresh tokens.
 
 #### Extended setup
 
@@ -169,7 +169,7 @@ npm run client
 
 To test APIs run `npm test` but be careful - this will erase the database before and after the test (it only connects to local instance of MongoDB).
 
-Run `mocha test/*.test.js` if you do not want the database to be erased before and after the test.
+Run `mocha test/*.test.js` if you do not wish the database to be erased before and after the test.
 
 ## API Specification
 
