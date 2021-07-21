@@ -4,6 +4,7 @@ import dateFormat from 'dateformat';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 
 import AppContext from '../../context/app/app.context.js';
 
@@ -82,4 +83,4 @@ Note.propTypes = {
     deleteLoading: PropTypes.bool.isRequired,
 };
 
-export default Note;
+export default withRouter(Note);

@@ -3,6 +3,7 @@ import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import queryString from 'query-string';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 
 const Paginate = ({ pages, page, location, profileName }) => {
     const searchCriteria = queryString.parse(location.search);
@@ -36,4 +37,4 @@ Paginate.propTypes = {
     profileName: PropTypes.string,
 };
 
-export default Paginate;
+export default withRouter(Paginate);

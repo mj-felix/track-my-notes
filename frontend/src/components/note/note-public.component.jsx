@@ -5,6 +5,7 @@ import { faExternalLinkAlt, faPaperclip } from '@fortawesome/free-solid-svg-icon
 import { Link } from 'react-router-dom';
 import dateFormat from 'dateformat';
 import sanitizeHtml from 'sanitize-html';
+import { withRouter } from 'react-router';
 
 import TooltipPopup from '../misc/tooltip-popup.component.jsx';
 
@@ -127,4 +128,4 @@ const PublicNote = ({ note, match, isTile }) => {
     );
 };
 
-export default PublicNote;
+export default withRouter(PublicNote);

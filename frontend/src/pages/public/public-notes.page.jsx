@@ -63,13 +63,13 @@ const PublicNotes = ({ match, location }) => {
             {notes && notes.notes && notes.notes.length > 0 &&
                 notes.notes.map(note => (
                     <Container key={note._id}>
-                        <PublicNote note={note} match={match} isTile />
+                        <PublicNote note={note} isTile />
                     </Container>
                 ))
             }
             {notes && notes.pages > 0 &&
                 <Container className='d-flex justify-content-center'>
-                    <Paginate pages={notes.pages} page={notes.page} location={location} profileName={match.params.profileName} />
+                    <Paginate pages={notes.pages} page={notes.page} profileName={match.params.profileName} />
                 </Container>
             }
         </>

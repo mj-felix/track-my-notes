@@ -3,6 +3,7 @@ import { Button, Form, Row, Col, Spinner, Card } from 'react-bootstrap';
 import queryString from 'query-string';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router';
 
 import AppContext from '../../context/app/app.context.js';
 
@@ -114,4 +115,4 @@ const SearchNotes = ({ history, location }) => {
     );
 };
 
-export default SearchNotes;
+export default withRouter(SearchNotes);

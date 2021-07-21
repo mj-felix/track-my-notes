@@ -28,7 +28,7 @@ const NotesPage = ({ location, history }) => {
     return (
         <Row>
             <Col xs={12} sm={12} md={4} lg={3} xl={3} className='mb-3' style={{ minHeight: '100px' }}>
-                <SearchNotes history={history} location={location} />
+                <SearchNotes />
             </Col>
             {error &&
                 <Col>
@@ -58,7 +58,7 @@ const NotesPage = ({ location, history }) => {
                 className='d-flex justify-content-center mt-3'
             >
                 {notes.pages > 0 &&
-                    <Paginate pages={notes.pages} page={notes.page} location={location} />
+                    <Paginate pages={notes.pages} page={notes.page} />
                 }
             </Col>
         </Row>

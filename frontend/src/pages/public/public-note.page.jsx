@@ -52,7 +52,7 @@ const PublicNotes = ({ match, location }) => {
                             {' '}&rarr; {note.title}
                         </Card.Body>
                     </Card>
-                    <PublicNote note={note} match={match} location={location} />
+                    <PublicNote note={note} />
                 </Container>
             }
         </>

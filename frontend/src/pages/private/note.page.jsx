@@ -76,7 +76,7 @@ const NotePage = ({ match, history }) => {
                         isBeingUpdated ?
                             <UpdateNote setIsBeingUpdated={setIsBeingUpdated} isDraft={isDraft} setIsDraft={setIsDraft} handleDelete={handleDelete} deleteLoading={deleteLoading} />
                             :
-                            <Note setIsBeingUpdated={setIsBeingUpdated} history={history} handleDelete={handleDelete} deleteLoading={deleteLoading} />
+                            <Note setIsBeingUpdated={setIsBeingUpdated} handleDelete={handleDelete} deleteLoading={deleteLoading} />
                     )
                     }
                 </Col>
