@@ -52,7 +52,12 @@ const NoteFiles = () => {
                                         size='lg'
                                         icon={faTrashAlt}
                                         className='pointer'
-                                        onClick={() => { deleteFile(note._id, file.storedFileName); }}
+                                        onClick={() => {
+                                            if (!window.confirm(`You are about to delete '${file.originalFileName}' file. Do you want to proceed?`)) {
+                                                return;
+                                            }
+                                            deleteFile(note._id, file.storedFileName);
+                                        }}
                                     />
                                 </td>
                             </>
