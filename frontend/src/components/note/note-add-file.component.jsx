@@ -7,9 +7,9 @@ const AddFile = () => {
     const appContext = useContext(AppContext);
     const { uploadFile, noteLoading, note } = appContext;
 
-    const handleFileSelect = (e) => {
+    const handleFileSelect = async (e) => {
         if (e.target.files.length > 0) {
-            uploadFile(note._id, e.target.files[0]);
+            await uploadFile(note._id, e.target.files[0]);
             e.target.value = null;
         }
     };
