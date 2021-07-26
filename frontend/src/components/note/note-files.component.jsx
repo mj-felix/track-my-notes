@@ -53,7 +53,7 @@ const NoteFiles = () => {
                                         icon={faTrashAlt}
                                         className='pointer'
                                         onClick={() => {
-                                            if (!window.confirm(`You are about to delete '${file.originalFileName}' file. Do you want to proceed?`)) {
+                                            if (!window.confirm(`You are about to delete '${file.originalFileName}' file.\n\nDo you want to proceed?`)) {
                                                 return;
                                             }
                                             deleteFile(note._id, file.storedFileName);

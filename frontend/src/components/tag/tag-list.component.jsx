@@ -23,7 +23,7 @@ const TagList = () => {
     }, [accessToken]);
 
     const handleDelete = async (tag) => {
-        if (!window.confirm(`You are about to delete '${tag.name}' tag that may be associated with notes. Notes will be untagged but not deleted. Do you want to proceed?`)) {
+        if (!window.confirm(`You are about to delete '${tag.name}' tag that may be associated with notes. Notes will be untagged but not deleted.\n\nDo you want to proceed?`)) {
             return;
         }
         setTagBeingDeleted(tag);

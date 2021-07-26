@@ -19,7 +19,7 @@ const NotePage = ({ match, history }) => {
     const [deleteLoading, setDeleteLoading] = useState(false);
 
     const handleDelete = async () => {
-        if (!window.confirm(`You are about to delete '${note.title}' note. Do you want to proceed?`)) {
+        if (!isDraft && !window.confirm(`You are about to delete '${note.title}' note.\n\nDo you want to proceed?`)) {
             return;
         }
         setDeleteLoading(true);
