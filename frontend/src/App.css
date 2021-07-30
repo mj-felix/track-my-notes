@@ -45,6 +45,10 @@ footer {
   height: auto;
 }
 
+.note ul {
+  list-style-type: square;
+}
+
 .card-container {
   display: grid;
   grid-column-gap: 15px;
