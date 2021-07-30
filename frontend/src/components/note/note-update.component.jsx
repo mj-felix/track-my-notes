@@ -66,7 +66,7 @@ const UpdateNote = ({ setIsBeingUpdated, isDraft, setIsDraft, handleDelete, dele
                             <Form.Group as={Col} xs={3} controlId='isPublic'>
                                 <Form.Label>
                                     Public? <TooltipPopup
-                                        msg='Public note can be accessed by anyone.'
+                                        msg='Public note can be accessed by anyone. Non-public notes convert urls to external links and break lines automatically.'
                                         placement='right'
                                     >
                                         <FontAwesomeIcon size='sm' icon={faInfoCircle} />
@@ -123,7 +123,7 @@ const UpdateNote = ({ setIsBeingUpdated, isDraft, setIsDraft, handleDelete, dele
                         <Form.Group controlId='description'>
                             <Form.Label>
                                 Description <TooltipPopup
-                                    msg='Allowed tags and attributes: b, strong, i, em, a[href, target], p, li, ul, ol, img[src, alt, class, style], h1, h2, h3, br, pre. Use ONLY attached images.'
+                                    msg='Allowed tags and attributes: strong, em, a[href, target], p, li, ul, ol, img[src, alt, style], h1, h2, h3, br, hr, pre. Use ONLY attached images. Be aware that non-public notes convert urls to external links and break lines automatically.'
                                     placement='right'
                                 >
                                     <FontAwesomeIcon size='sm' icon={faInfoCircle} />

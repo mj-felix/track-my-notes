@@ -12,10 +12,10 @@ const NoteFiles = () => {
 
     const [isBeingCopied, setIsBeingCopied] = useState(null);
 
-    const handleCopyToClipboard = (txt, fileId) => {
+    const handleCopyToClipboard = (url, alt, fileId) => {
         setIsBeingCopied(fileId);
         setTimeout(() => {
-            navigator.clipboard.writeText(txt);
+            navigator.clipboard.writeText(`<img src='${url}' alt='${alt}' />`);
             setIsBeingCopied(null);
         }, 200);
 
@@ -44,7 +44,7 @@ const NoteFiles = () => {
                                         size='lg'
                                         icon={isBeingCopied === file._id ? faCopySolid : faCopy}
                                         className='pointer'
-                                        onClick={() => { handleCopyToClipboard(file.url, file._id); }}
+                                        onClick={() => { handleCopyToClipboard(file.url, file.originalFileName, file._id); }}
                                     />
                                 </td>
                                 <td className='text-right' style={{ width: '40px' }}>

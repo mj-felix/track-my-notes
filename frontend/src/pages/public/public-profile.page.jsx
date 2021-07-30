@@ -7,6 +7,7 @@ import { faLinkedinIn, faTwitter, faGithub } from '@fortawesome/free-brands-svg-
 
 import PublicContext from '../../context/public/public.context.js';
 import FadeableAlert from '../../components/misc/fadeable-alert.component.jsx';
+import { removeProtocol } from '../../utils/manipulateString.js';
 
 const PublicProfile = ({ match }) => {
     const publicContext = useContext(PublicContext);
@@ -73,7 +74,7 @@ const PublicProfile = ({ match }) => {
                                 <Col xs='12' className='py-1 lead'>
                                     <a href={profile.homepage} target='_blank' rel='noreferrer'>
                                         <FontAwesomeIcon icon={faGlobe} className='mr-2' />
-                                        {profile.homepage.replace(/(^\w+:|^)\/\//, '')}
+                                        {removeProtocol(profile.homepage)}
                                     </a>
                                 </Col>
                             }
@@ -81,7 +82,7 @@ const PublicProfile = ({ match }) => {
                                 <Col xs='12' className='py-1 lead'>
                                     <a href={profile.linkedIn} target='_blank' rel='noreferrer'>
                                         <FontAwesomeIcon icon={faLinkedinIn} className='mr-2' style={{ width: '17px' }} />
-                                        {profile.linkedIn.replace(/(^\w+:|^)\/\//, '')}
+                                        {removeProtocol(profile.linkedIn)}
                                     </a>
                                 </Col>
                             }
@@ -89,7 +90,7 @@ const PublicProfile = ({ match }) => {
                                 <Col xs='12' className='py-1 lead'>
                                     <a href={profile.twitter} target='_blank' rel='noreferrer'>
                                         <FontAwesomeIcon icon={faTwitter} className='mr-2' />
-                                        {profile.twitter.replace(/(^\w+:|^)\/\//, '')}
+                                        {removeProtocol(profile.twitter)}
                                     </a>
                                 </Col>
                             }
@@ -97,7 +98,7 @@ const PublicProfile = ({ match }) => {
                                 <Col xs='12' className='py-1 lead'>
                                     <a href={profile.gitHub} target='_blank' rel='noreferrer'>
                                         <FontAwesomeIcon icon={faGithub} className='mr-2' />
-                                        {profile.gitHub.replace(/(^\w+:|^)\/\//, '')}
+                                        {removeProtocol(profile.gitHub)}
                                     </a>
                                 </Col>
                             }
