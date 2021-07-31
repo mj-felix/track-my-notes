@@ -15,6 +15,7 @@ const authReducer = (state, action) => {
             return {
                 refreshToken: null,
                 accessToken: null,
+                isLoggedIn: false,
                 loading: false,
                 error: null,
                 noRedirect: true
@@ -22,7 +23,8 @@ const authReducer = (state, action) => {
         case AuthActionTypes.REFRESH_ACCESS_TOKEN_SUCCESS:
             return {
                 ...state,
-                accessToken: action.payload.accessToken
+                accessToken: action.payload.accessToken,
+                isLoggedIn: true
             };
         case AuthActionTypes.AUTH_FAILURE:
             return {

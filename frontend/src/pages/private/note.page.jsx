@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { Container, Spinner, Row, Col } from 'react-bootstrap';
 
 import AppContext from '../../context/app/app.context.js';
+import AuthContext from '../../context/auth/auth.context.js';
 import FadeableAlert from '../../components/misc/fadeable-alert.component.jsx';
 import Note from '../../components/note/note.component.jsx';
 import UpdateNote from '../../components/note/note-update.component.jsx';
@@ -10,9 +11,11 @@ import NoteTags from '../../components/note/note-tags.component.jsx';
 import NoteFiles from '../../components/note/note-files.component.jsx';
 import AddFile from '../../components/note/note-add-file.component.jsx';
 
-const NotePage = ({ match, history }) => {
+const NotePage = ({ match, history, location }) => {
     const appContext = useContext(AppContext);
-    const { accessToken, note, loading, error, eraseError, createNote, eraseNote, fetchNote, fetchTags, tags, deleteNote, notes, setNote } = appContext;
+    const { note, loading, error, eraseError, createNote, eraseNote, fetchNote, fetchTags, tags, deleteNote, notes, setNote } = appContext;
+    const authContext = useContext(AuthContext);
+    const { isLoggedIn } = authContext;
 
     const [isBeingUpdated, setIsBeingUpdated] = useState(false);
     const [isDraft, setIsDraft] = useState(false);
@@ -32,16 +35,40 @@ const NotePage = ({ match, history }) => {
     };
 
     useEffect(() => {
+        const isNoteInDraft = (note) => {
+            if (
+                !note.isSticky &&
+                !note.isPublic &&
+                note.tags.length === 0 &&
+                note.files.length === 0 &&
+                note.title === 'Draft title' &&
+                !note.description &&
+                !note.link &&
+                !note.madePublicAt
+            ) {
+                return true;
+            }
+            return false;
+        };
         const asyncCreateNote = async () => {
             const createdNote = await createNote({ title: 'Draft title' });
             if (createdNote) {
-                setIsBeingUpdated(true);
-                setIsDraft(true);
                 history.replace(`/note/${createdNote._id}`);
             }
         };
 
-        if (accessToken) {
+        const asyncFetchNote = async (id) => {
+            const fetchedNote = await fetchNote(id);
+            if (fetchedNote && isNoteInDraft(fetchedNote)) {
+                setIsBeingUpdated(true);
+                setIsDraft(true);
+            } else {
+                setIsBeingUpdated(false);
+                setIsDraft(false);
+            }
+        };
+
+        if (isLoggedIn) {
             if (match.params.id === 'new') {
                 asyncCreateNote();
             } else {
@@ -51,8 +78,12 @@ const NotePage = ({ match, history }) => {
                 const fetchedNote = notes && notes.notes && notes.notes.length > 0 && notes.notes.find(note => note._id === match.params.id);
                 if (fetchedNote) {
                     setNote(fetchedNote);
+                    if (isNoteInDraft(fetchedNote)) {
+                        setIsBeingUpdated(true);
+                        setIsDraft(true);
+                    }
                 } else {
-                    fetchNote(match.params.id);
+                    asyncFetchNote(match.params.id);
                 }
             }
         }
@@ -61,7 +92,7 @@ const NotePage = ({ match, history }) => {
             eraseNote();
         };
         // eslint-disable-next-line
-    }, [accessToken, match, history]);
+    }, [isLoggedIn, location, history]);
 
     return (
         <Container>

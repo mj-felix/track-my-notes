@@ -19,7 +19,6 @@ const UpdateNote = ({ setIsBeingUpdated, isDraft, setIsDraft, handleDelete, dele
     const [link, setLink] = useState(note.link ? note.link : '');
     const [description, setDescription] = useState(note.description);
 
-
     const handleSubmit = async e => {
         e.preventDefault();
         setUpdateLoading(true);

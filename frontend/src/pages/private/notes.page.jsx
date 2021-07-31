@@ -2,17 +2,20 @@ import React, { useContext, useEffect } from 'react';
 import { Container, Spinner, Row, Col } from 'react-bootstrap';
 
 import AppContext from '../../context/app/app.context.js';
+import AuthContext from '../../context/auth/auth.context.js';
 import FadeableAlert from '../../components/misc/fadeable-alert.component.jsx';
 import NoteTile from '../../components/note/note-tile.component.jsx';
 import SearchNotes from '../../components/note/notes-search.component.jsx';
 import Paginate from '../../components/misc/paginate.component.jsx';
 
-const NotesPage = ({ location, history }) => {
+const NotesPage = ({ location }) => {
     const appContext = useContext(AppContext);
-    const { accessToken, notes, tags, loading, error, eraseError, fetchNotes, fetchTags, eraseNotes } = appContext;
+    const { notes, tags, loading, error, eraseError, fetchNotes, fetchTags, eraseNotes } = appContext;
+    const authContext = useContext(AuthContext);
+    const { isLoggedIn } = authContext;
 
     useEffect(() => {
-        if (accessToken) {
+        if (isLoggedIn) {
             fetchNotes(location.search.substring(1, location.search.length));
             if (tags.length === 0) {
                 fetchTags();
@@ -23,7 +26,7 @@ const NotesPage = ({ location, history }) => {
             eraseError();
         };
         // eslint-disable-next-line
-    }, [accessToken, location]);
+    }, [isLoggedIn, location]);
 
     return (
         <Row>

@@ -10,6 +10,7 @@ const AuthState = props => {
     const initialState = {
         refreshToken: localStorage.getItem('refreshToken'),
         accessToken: null,
+        isLoggedIn: false,
         loading: false,
         error: null,
         noRedirect: false
@@ -136,6 +137,7 @@ const AuthState = props => {
             value={{
                 refreshToken: state.refreshToken,
                 accessToken: state.accessToken,
+                isLoggedIn: state.isLoggedIn,
                 loading: state.loading,
                 user: state.user,
                 error: state.error,

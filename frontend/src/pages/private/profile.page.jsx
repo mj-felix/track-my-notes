@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 
 import AppContext from '../../context/app/app.context.js';
+import AuthContext from '../../context/auth/auth.context.js';
 import FadeableAlert from '../../components/misc/fadeable-alert.component.jsx';
 import Profile from '../../components/user/profile.component.jsx';
 import UpdateProfile from '../../components/user/profile-update.component.jsx';
@@ -9,18 +10,20 @@ import UpdateCredentials from '../../components/user/credentials-update.componen
 
 const ProfilePage = () => {
     const appContext = useContext(AppContext);
-    const { accessToken, eraseError, loading, error, user, fetchUser } = appContext;
+    const { eraseError, loading, error, user, fetchUser } = appContext;
+    const authContext = useContext(AuthContext);
+    const { isLoggedIn } = authContext;
 
     const [isProfileBeingUpdated, setIsProfileBeingUpdated] = useState(false);
     const [areCredentialsBeingUpdated, setAreCredentialsBeingUpdated] = useState(false);
 
     useEffect(() => {
-        if (accessToken && !user) {
+        if (isLoggedIn && !user) {
             fetchUser();
         }
         return () => eraseError();
         // eslint-disable-next-line
-    }, [accessToken, user]);
+    }, [isLoggedIn, user]);
 
 
     return (

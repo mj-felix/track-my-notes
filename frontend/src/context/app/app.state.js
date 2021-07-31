@@ -286,11 +286,13 @@ const AppState = props => {
                 type: AppActionTypes.FETCH_NOTE_SUCCESS,
                 payload: res.data
             });
+            return res.data;
         } catch (err) {
             dispatch({
                 type: AppActionTypes.FETCH_NOTE_FAILURE,
                 payload: 'Fetching note failed ... please refresh the page.'
             });
+            return false;
         }
     };
 
@@ -339,7 +341,6 @@ const AppState = props => {
                 error: state.error,
                 note: state.note,
                 notes: state.notes,
-                accessToken,
                 fetchTags,
                 eraseError,
                 addTag,

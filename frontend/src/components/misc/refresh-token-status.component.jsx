@@ -34,7 +34,7 @@ const RefreshTokenStatus = () => {
         {
             icon: faBatteryEmpty,
             color: '#cc3e3b',
-            timeLeft: 'less than 30min'
+            timeLeft: 'less than 30min. Save your data, log out and log in again for best experience'
         },
     ];
     const [status, setStatus] = useState(statuses[0]);

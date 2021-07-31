@@ -2,25 +2,28 @@ import React, { useEffect, useContext, useState } from 'react';
 import { Container, Spinner, Table } from 'react-bootstrap';
 
 import AppContext from '../../context/app/app.context.js';
+import AuthContext from '../../context/auth/auth.context.js';
 import FadeableAlert from '../misc/fadeable-alert.component.jsx';
 import Tag from './tag.component.jsx';
 import UpdateTag from './tag-update.component.jsx';
 
 const TagList = () => {
     const appContext = useContext(AppContext);
-    const { accessToken, fetchTags, eraseError, tags, loading, error, deleteTag, updateTag } = appContext;
+    const { fetchTags, eraseError, tags, loading, error, deleteTag, updateTag } = appContext;
+    const authContext = useContext(AuthContext);
+    const { isLoggedIn } = authContext;
 
     const [tagBeingDeleted, setTagBeingDeleted] = useState({});
     const [isBeingUpdated, setIsBeingUpdated] = useState(false);
     const [tagToBeUpdated, setTagToBeUpdated] = useState({});
 
     useEffect(() => {
-        if (accessToken && tags.length === 0) {
+        if (isLoggedIn && tags.length === 0) {
             fetchTags(true);
         }
         return () => eraseError();
         // eslint-disable-next-line
-    }, [accessToken]);
+    }, [isLoggedIn]);
 
     const handleDelete = async (tag) => {
         if (!window.confirm(`You are about to delete '${tag.name}' tag that may be associated with notes. Notes will be untagged but not deleted.\n\nDo you want to proceed?`)) {
