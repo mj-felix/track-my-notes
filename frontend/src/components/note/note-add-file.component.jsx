@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 
 import AppContext from '../../context/app/app.context.js';
 
-const AddFile = () => {
+const AddFile = ({ setIsDraft }) => {
     const appContext = useContext(AppContext);
     const { uploadFile, noteLoading, note } = appContext;
 
@@ -11,6 +11,7 @@ const AddFile = () => {
         if (e.target.files.length > 0) {
             await uploadFile(note._id, e.target.files[0]);
             e.target.value = null;
+            setIsDraft(false);
         }
     };
     return (

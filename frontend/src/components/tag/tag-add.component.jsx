@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import AppContext from '../../context/app/app.context.js';
 import FadeableAlert from '../misc/fadeable-alert.component.jsx';
 
-const AddTag = ({ isNotePage }) => {
+const AddTag = ({ isNotePage, setIsDraft }) => {
     const appContext = useContext(AppContext);
     const { addTag, note, updateNote, noteLoading } = appContext;
 
@@ -19,6 +19,7 @@ const AddTag = ({ isNotePage }) => {
             ...note,
             tags: newTags
         });
+        setIsDraft(false);
     };
 
     const handleSubmit = async e => {

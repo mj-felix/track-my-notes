@@ -118,15 +118,15 @@ const NotePage = ({ match, history, location }) => {
                     {note && tags &&
                         <>
                             <h2>Tags</h2>
-                            <AddTag isNotePage />
+                            <AddTag isNotePage setIsDraft={setIsDraft} />
                             <hr />
-                            <NoteTags />
+                            <NoteTags setIsDraft={setIsDraft} />
                         </>
                     }
                     {note &&
                         <>
                             <h2 className='mt-4'>Attachements</h2>
-                            <AddFile isNotePage />
+                            <AddFile setIsDraft={setIsDraft} />
                             <NoteFiles />
                         </>
                     }

@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 
 import AppContext from '../../context/app/app.context.js';
 
-const NoteTags = () => {
+const NoteTags = ({ setIsDraft }) => {
     const appContext = useContext(AppContext);
     const { note, tags, updateNote, noteLoading } = appContext;
 
@@ -14,6 +14,7 @@ const NoteTags = () => {
             ...note,
             tags: newTags
         });
+        setIsDraft(false);
     };
 
     const removeTagFromNote = async (tagId) => {
