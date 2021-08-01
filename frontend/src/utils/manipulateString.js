@@ -3,6 +3,6 @@ export const replaceLinks = (str) => {
     return str.replace(pattern, "<a href='$1' target='_blank'>$1</a>");
 };
 
-export const breakLines = (str) => str.split('').reverse().join('').split(/\n(?=>a|>\/|>me|>gnorts|\b|\n)/).join('>/ rb<').split('').reverse().join('');
+export const breakLines = (str) => str.split('').reverse().join('').split(/\n(?=>a|>\/|>me|>gnorts|\b|\n|\s|[.!@#$%^&*()_+-=;:,])/).join('>/ rb<').split('').reverse().join('');
 
 export const removeProtocol = (url) => url.replace(/(^\w+:|^)\/\//, '');
