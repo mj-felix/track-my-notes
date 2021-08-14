@@ -44,7 +44,7 @@ module.exports.getPublicNote = asyncHandler(async (req, res) => {
                 select: 'profileName isPublic -_id'
             }
         )
-        .populate('tags', 'name');
+        .populate('tags', 'name', null, { sort: { name: 'asc' } });
     if (note && note.user) {
         res.json(note);
     } else {
@@ -69,7 +69,7 @@ module.exports.getPublicNotes = asyncHandler(async (req, res) => {
             .find(findFilter)
             .select('-__v')
             .sort({ isSticky: 'desc', madePublicAt: 'desc', updatedAt: 'desc' })
-            .populate('tags', 'name')
+            .populate('tags', 'name', null, { sort: { name: 'asc' } })
             .populate('user', 'isPublic profileName -_id')
             .limit(pageSize)
             .skip(pageSize * (page - 1));

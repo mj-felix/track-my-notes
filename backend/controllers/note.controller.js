@@ -85,7 +85,7 @@ module.exports.getNotes = asyncHandler(async (req, res) => {
         .find(findFilter)
         .select('-__v')
         .sort({ isSticky: 'desc', madePublicAt: 'desc', updatedAt: 'desc' })
-        .populate('tags', 'name')
+        .populate('tags', 'name', null, { sort: { name: 'asc' } })
         .populate('user', 'profileName')
         .limit(pageSize)
         .skip(pageSize * (page - 1));
@@ -93,7 +93,11 @@ module.exports.getNotes = asyncHandler(async (req, res) => {
 });
 
 module.exports.getNote = asyncHandler(async (req, res) => {
-    const note = await Note.findById(req.params.id).select('-__v').populate('tags', 'name').populate('user', 'profileName');
+    const note = await Note
+        .findById(req.params.id)
+        .select('-__v')
+        .populate('tags', 'name', null, { sort: { name: 'asc' } })
+        .populate('user', 'profileName');
     // if(!note) covered by noteBelongsToUser middleware
     res.json(note);
 });
