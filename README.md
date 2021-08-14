@@ -169,7 +169,7 @@ npm run client
 
 To test APIs run `npm test` but be careful - this will erase the database before and after the test (it only connects to local instance of MongoDB).
 
-Run `mocha test/*.test.js` if you do not wish the database to be erased before and after the test.
+Run `npx mocha test/*.test.js` if you do not wish the database to be erased before and after the test. Depending on the data present in the database at the time of running the test, some tests might fail due to data issues.
 
 ## API Specification
 
