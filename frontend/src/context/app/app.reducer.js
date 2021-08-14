@@ -114,6 +114,7 @@ const appReducer = (state, action) => {
         case AppActionTypes.DELETE_NOTE_FAILURE:
             return {
                 ...state,
+                loading: false,
                 noteLoading: false,
                 error: action.payload
             };
