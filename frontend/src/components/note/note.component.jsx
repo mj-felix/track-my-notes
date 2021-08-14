@@ -22,7 +22,7 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
                 <div className='h4'>
                     {note.isPublic &&
                         <Badge variant='success'>
-                            <a href={`/user/${note.user.profileName}/notes/${note._id}`} target='_blank' rel='noreferrer'>
+                            <a href={`/user/${note.user.profileName}/notes/${note._id}`}>
                                 Public
                                 {note.madePublicAt &&
                                     <> since {dateFormat(note.madePublicAt, 'dd mmm yyyy')}</>

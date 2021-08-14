@@ -47,7 +47,7 @@ const NoteTile = ({ note }) => {
                             placement='top'
                         >
                             <Badge variant='success'>
-                                <a href={`/user/${note.user.profileName}/notes/${note._id}`} target='_blank' rel='noreferrer'>P</a>
+                                <a href={`/user/${note.user.profileName}/notes/${note._id}`}>P</a>
                             </Badge>
                         </TooltipPopup>
                     }

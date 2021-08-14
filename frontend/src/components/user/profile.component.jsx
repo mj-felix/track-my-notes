@@ -30,7 +30,7 @@ const Profile = ({ setIsProfileBeingUpdated, setAreCredentialsBeingUpdated }) =>
                             <td>
                                 {user.profileName} {user.isPublic ?
                                     <Badge variant='danger'>
-                                        <a href={`/user/${user.profileName}`} target='_blank' rel='noreferrer'>
+                                        <a href={`/user/${user.profileName}`}>
                                             public profile
                                             <FontAwesomeIcon icon={faLink} className='ml-1' />
                                         </a>
