@@ -61,7 +61,11 @@ const PublicNote = ({ note, match, isTile }) => {
                             msg='Publication Date'
                             placement='top'
                         >
-                            <Badge variant='success'>{dateFormat(note.madePublicAt, 'dd mmm yyyy')}</Badge>
+                            <Badge variant='success'>
+                                <time dateTime={dateFormat(note.madePublicAt, 'yyyy-mm-dd')}>
+                                    {dateFormat(note.madePublicAt, 'dd mmm yyyy')}
+                                </time>
+                            </Badge>
                         </TooltipPopup>
                     }
                     {note.files.length > 0 &&

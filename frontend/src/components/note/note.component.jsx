@@ -25,7 +25,9 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
                             <a href={`/user/${note.user.profileName}/notes/${note._id}`}>
                                 Public
                                 {note.madePublicAt &&
-                                    <> since {dateFormat(note.madePublicAt, 'dd mmm yyyy')}</>
+                                    <> since <time dateTime={dateFormat(note.madePublicAt, 'yyyy-mm-dd')}>
+                                        {dateFormat(note.madePublicAt, 'dd mmm yyyy')}
+                                    </time></>
                                 }
                                 <FontAwesomeIcon icon={faLink} size='sm' className='ml-1' />
                             </a>
