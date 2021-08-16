@@ -68,6 +68,8 @@ Application is fully functional in production environment: [trackmynotes.mjfelix
 
 ## Technologies/Components
 
+![MERN stack](https://mjfelix.dev/img/external/mern-stack.png)
+
 Selection of components is inspired by the Udemy courses [React Front to Back](https://www.udemy.com/course/modern-react-front-to-back/) and [MERN eCommerce From Scratch](https://www.udemy.com/course/mern-ecommerce/) from [Bad Traversy](https://www.traversymedia.com). Application is using MERN stack and is deployed on Heroku.
 
 ### Backend/APIs
