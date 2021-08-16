@@ -5,7 +5,7 @@ import AuthContext from '../auth/auth.context.js';
 import AppContext from './app.context.js';
 import appReducer from './app.reducer.js';
 import { AppActionTypes } from './app.types.js';
-import { validateProfileName, validatePassword } from '../../utils/validateUser.js';
+import { validateProfileName, validatePassword } from '../../utils/validate-user.utils.js';
 
 const AppState = props => {
     const authContext = useContext(AuthContext);

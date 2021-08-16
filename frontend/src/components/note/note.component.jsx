@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import AppContext from '../../context/app/app.context.js';
-import { replaceLinks, breakLines, removeProtocol } from '../../utils/manipulateString.js';
+import { replaceLinks, breakLines, removeProtocol } from '../../utils/manipulate-string.utils.js';
 
 const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
     const appContext = useContext(AppContext);

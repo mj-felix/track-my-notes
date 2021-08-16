@@ -4,7 +4,7 @@ import axios from 'axios';
 import AuthContext from './auth.context.js';
 import authReducer from './auth.reducer.js';
 import { AuthActionTypes } from './auth.types.js';
-import { validateProfileName, validatePassword } from '../../utils/validateUser.js';
+import { validateProfileName, validatePassword } from '../../utils/validate-user.utils.js';
 
 const AuthState = props => {
     const initialState = {

@@ -7,7 +7,7 @@ import { faLinkedinIn, faTwitter, faGithub } from '@fortawesome/free-brands-svg-
 
 import PublicContext from '../../context/public/public.context.js';
 import FadeableAlert from '../../components/misc/fadeable-alert.component.jsx';
-import { removeProtocol } from '../../utils/manipulateString.js';
+import { removeProtocol } from '../../utils/manipulate-string.utils.js';
 
 const PublicProfile = ({ match }) => {
     const publicContext = useContext(PublicContext);
