@@ -1,5 +1,7 @@
 # TrackMyNotes by MJ Felix
 
+![TrackMyNotes by MJ Felix](https://trackmynotes.mjfelix.dev/screenshot.jpg)
+
 ## Table of Contents
 
   - [Description](#description)
