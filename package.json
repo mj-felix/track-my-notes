@@ -1,6 +1,6 @@
 {
   "name": "track-my-notes",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "App to store, organise and publish notes",
   "main": "server.js",
   "scripts": {
