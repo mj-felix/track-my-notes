@@ -39,7 +39,7 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
                     {note.link &&
                         <Badge variant='primary'>
                             <a href={note.link} target='_blank' rel='noreferrer'>
-                                {removeProtocol(note.link).length > 42 ? removeProtocol(note.link).substring(0, 39) + '...' : removeProtocol(note.link)}
+                                {removeProtocol(note.link).length > 40 ? removeProtocol(note.link).substring(0, 37) + '...' : removeProtocol(note.link)}
                                 <FontAwesomeIcon size='sm' icon={faExternalLinkAlt} className='ml-1' />
                             </a>
                         </Badge>
