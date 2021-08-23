@@ -8,6 +8,7 @@ import sanitizeHtml from 'sanitize-html';
 import { withRouter } from 'react-router';
 
 import TooltipPopup from '../misc/tooltip-popup.component.jsx';
+import { removeProtocol } from '../../utils/manipulate-string.utils.js';
 
 const PublicNote = ({ note, match, isTile }) => {
     const sanitizedNoteDescription = sanitizeHtml(note.description, {
@@ -85,6 +86,7 @@ const PublicNote = ({ note, match, isTile }) => {
                         >
                             <Badge variant='primary'>
                                 <a href={note.link} target='_blank' rel='noreferrer'>
+                                    {removeProtocol(note.link).length > 40 ? removeProtocol(note.link).substring(0, 37) + '...' : removeProtocol(note.link)}
                                     <FontAwesomeIcon size='sm' icon={faExternalLinkAlt} />
                                 </a>
                             </Badge>
@@ -94,9 +96,9 @@ const PublicNote = ({ note, match, isTile }) => {
             </Card.Header>
 
             <Card.Body className='d-flex flex-column justify-content-between'>
-                {!isTile && tags}
+                {tags}
                 {isTile ?
-                    <Card.Text>
+                    <Card.Text className="font-italic">
                         {sanitizedNoteDescription &&
                             sanitizedNoteDescription.length > 400 ? sanitizedNoteDescription.substring(0, 397) + '...' : sanitizedNoteDescription
                         }
@@ -106,7 +108,7 @@ const PublicNote = ({ note, match, isTile }) => {
                             note.description &&
                             <div
                                 dangerouslySetInnerHTML={{ __html: note.description }}
-                                className='note mt-2'
+                                className='note'
                             />
                         }
                         {note.files.length > 0 &&
@@ -126,7 +128,6 @@ const PublicNote = ({ note, match, isTile }) => {
                         }
                     </>
                 }
-                {isTile && tags}
             </Card.Body>
         </Card >
     );
