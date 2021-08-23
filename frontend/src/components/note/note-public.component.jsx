@@ -80,17 +80,12 @@ const PublicNote = ({ note, match, isTile }) => {
                         </TooltipPopup>
                     }
                     {note.link &&
-                        <TooltipPopup
-                            msg='Note has a link.'
-                            placement='top'
-                        >
-                            <Badge variant='primary'>
-                                <a href={note.link} target='_blank' rel='noreferrer'>
-                                    {removeProtocol(note.link).length > 40 ? removeProtocol(note.link).substring(0, 37) + '...' : removeProtocol(note.link)}
-                                    <FontAwesomeIcon size='sm' icon={faExternalLinkAlt} />
-                                </a>
-                            </Badge>
-                        </TooltipPopup>
+                        <Badge variant='primary'>
+                            <a href={note.link} target='_blank' rel='noreferrer'>
+                                {removeProtocol(note.link).length > 40 ? removeProtocol(note.link).substring(0, 37) + '...' : removeProtocol(note.link)}
+                                <FontAwesomeIcon size='sm' icon={faExternalLinkAlt} className='ml-1' />
+                            </a>
+                        </Badge>
                     }
                 </div>
             </Card.Header>
