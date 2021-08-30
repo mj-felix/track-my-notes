@@ -175,6 +175,10 @@ To test APIs run `npm test` but be careful - this will erase the database before
 
 Run `npx mocha test/*.test.js` if you do not wish the database to be erased before and after the test. Depending on the data present in the database at the time of running the test, some tests might fail due to data issues.
 
+API test results:
+
+![API test results](test/api-test-results.png)
+
 ## API Specification
 
 You can explore endpoints via [Postman collection](https://github.com/mj-felix/track-my-notes/tree/main/postman/backend_API).
