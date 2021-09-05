@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import AppContext from '../../context/app/app.context.js';
-import { replaceLinks, breakLines, removeProtocol } from '../../utils/manipulate-string.utils.js';
+import { replaceLinks, breakLines, removeProtocol, addStopPropagation } from '../../utils/manipulate-string.utils.js';
 
 const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
     const appContext = useContext(AppContext);
@@ -46,8 +46,8 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
                     }
                 </div>
                 {note.description &&
-                    <div
-                        dangerouslySetInnerHTML={{ __html: note.isPublic ? note.description : breakLines(replaceLinks(note.description)) }}
+                    <div onClick={() => { setIsBeingUpdated(true); }}
+                        dangerouslySetInnerHTML={{ __html: note.isPublic ? addStopPropagation(note.description) : breakLines(addStopPropagation(replaceLinks(note.description))) }}
                         className='mt-4 px-2 py-2 px-md-3 py-md-3 px-lg-4 py-lg-4 bg-white note border'
                     />
                 }

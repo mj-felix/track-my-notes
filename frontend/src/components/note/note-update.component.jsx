@@ -133,6 +133,7 @@ const UpdateNote = ({ setIsBeingUpdated, isDraft, setIsDraft, handleDelete, dele
                                 rows={9}
                                 placeholder='Enter description'
                                 value={description}
+                                autoFocus
                                 onChange={(e) => setDescription(e.target.value)}
                             />
                         </Form.Group>

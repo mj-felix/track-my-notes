@@ -6,3 +6,5 @@ export const replaceLinks = (str) => {
 export const breakLines = (str) => str.split('').reverse().join('').split(/\n(?=>a|>\/|>me|>gnorts|\b|\n|\s|[.?!@#$%^&*()\[\]\{\}_+-=;:,…])/).join('>/ rb<').split('').reverse().join('');
 
 export const removeProtocol = (url) => url.replace(/(^\w+:|^)\/\//, '');
+
+export const addStopPropagation = (str) => str.replace(/<a /gi, '<a onclick="(function (e) { e.stopPropagation(); })(arguments[0]);" ');
