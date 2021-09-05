@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const Footer = () => {
     return (
-        <footer className='fixed-bottom bg-light'>
+        <footer className='fixed-bottom bg-light d-none d-md-block'>
             <Container className='col-sm-12 col-xl-10 offset-xl-1'>
                 <Row className='align-items-center justify-content-between'>
                     <Col className='d-flex'>
