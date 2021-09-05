@@ -70,7 +70,7 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
                     <Col xs={4}>
                         <Button variant='info' className='w-100 mb-3 mt-4' disabled={noteLoading}
                             onClick={() => { setIsBeingUpdated(true); }}>
-                            Update
+                            Edit
                         </Button>
                     </Col>
                 </Row>

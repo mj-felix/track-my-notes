@@ -41,7 +41,7 @@ const UpdateNote = ({ setIsBeingUpdated, isDraft, setIsDraft, handleDelete, dele
 
     return (
         <>
-            <h2>{isDraft ? 'Draft Note' : 'Update Note'}</h2>
+            <h2>{isDraft ? 'Draft Note' : 'Edit Note'}</h2>
             <Form onSubmit={handleSubmit} className='py-2 mt-3'>
                 <Row>
                     <Col xs={12}>
