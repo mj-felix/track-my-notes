@@ -25,7 +25,7 @@ const uploadS3 = multer({
     storage: multerS3({
         s3: s3,
         acl: 'public-read',
-        bucket: process.env.S3_BUCKET,
+        bucket: process.env.S3_BUCKET || 'track-my-notes-dev',
         metadata: (req, file, cb) => {
             cb(null, { fieldName: file.fieldname });
         },

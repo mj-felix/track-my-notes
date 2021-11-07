@@ -49,7 +49,7 @@ module.exports.deleteNote = asyncHandler(async (req, res) => {
     // if(!note) covered by noteBelongsToUser middleware
     if (note.files.length > 0) {
         const deleteParam = {
-            Bucket: process.env.S3_BUCKET,
+            Bucket: process.env.S3_BUCKET || 'track-my-notes-dev',
             Delete: {
                 Objects: []
             }

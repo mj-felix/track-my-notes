@@ -24,7 +24,7 @@ module.exports.uploadFile = asyncHandler(async (req, res) => {
 module.exports.deleteFile = asyncHandler(async (req, res) => {
     const { id, storedFileName } = req.params;
     await s3.deleteObject({
-        Bucket: process.env.S3_BUCKET,
+        Bucket: process.env.S3_BUCKET || 'track-my-notes-dev',
         Key: storedFileName
     }).promise();
     const note = await Note
