@@ -4,30 +4,30 @@
 
 ## Table of Contents
 
-  - [Description](#description)
-  - [Scope of Functionalities](#scope-of-functionalities)
-    - [Pre-login](#pre-login)
-    - [Post-login](#post-login)
-  - [Technologies/Components](#technologiescomponents)
-    - [Backend/APIs](#backendapis)
-    - [Frontend](#frontend)
-  - [Installation Notes](#installation-notes)
-    - [Node.js](#nodejs)
-    - [MongoDB](#mongodb)
-    - [Environement Variables](#environement-variables)
-      - [Minimum setup](#minimum-setup)
-      - [Extended setup](#extended-setup)
-    - [Install Dependecies](#install-dependencies)
-    - [Run Application](#run-application)
-    - [Test APIs](#test-apis)
-  - [API Specification](#api-specification)
-    - [Endpoint: /api/v1/auth](#endpoint-apiv1auth)
-    - [Endpoint: /api/v1/users](#endpoint-apiv1users)
-    - [Endpoint: /api/v1/tags](#endpoint-apiv1tags)
-    - [Endpoint: /api/v1/notes](#endpoint-apiv1notes)
-    - [Endpoint: /api/v1/notes/:id/files](#endpoint-apiv1notesidfiles)
-    - [Endpoint: /api/v1/public/:profilename](#endpoint-apiv1publicprofilename)
-  - [Contact](#contact)
+- [Description](#description)
+- [Scope of Functionalities](#scope-of-functionalities)
+  - [Pre-login](#pre-login)
+  - [Post-login](#post-login)
+- [Technologies/Components](#technologiescomponents)
+  - [Backend/APIs](#backendapis)
+  - [Frontend](#frontend)
+- [Installation Notes](#installation-notes)
+  - [Node.js](#nodejs)
+  - [MongoDB](#mongodb)
+  - [Environement Variables](#environement-variables)
+    - [Minimum setup](#minimum-setup)
+    - [Extended setup](#extended-setup)
+  - [Install Dependecies](#install-dependencies)
+  - [Run Application](#run-application)
+  - [Test APIs](#test-apis)
+- [API Specification](#api-specification)
+  - [Endpoint: /api/v1/auth](#endpoint-apiv1auth)
+  - [Endpoint: /api/v1/users](#endpoint-apiv1users)
+  - [Endpoint: /api/v1/tags](#endpoint-apiv1tags)
+  - [Endpoint: /api/v1/notes](#endpoint-apiv1notes)
+  - [Endpoint: /api/v1/notes/:id/files](#endpoint-apiv1notesidfiles)
+  - [Endpoint: /api/v1/public/:profilename](#endpoint-apiv1publicprofilename)
+- [Contact](#contact)
 
 ## Description
 
@@ -74,21 +74,21 @@ Selection of components is inspired by the Udemy courses [React Front to Back](h
 
 ### Backend/APIs
 
- - Node.js
- - Express.js
- - MongoDB Atlas (via mongoose.js)
- - Amazon Web Services (AWS) S3
- - JSON Web Token (JWT)
- - Mocha, Chai, supertest (for API testing)
- - Others ([see package.json](https://github.com/mj-felix/track-my-notes/blob/main/package.json))
+- Node.js
+- Express.js
+- MongoDB Atlas (via mongoose.js)
+- Amazon Web Services (AWS) S3
+- JSON Web Token (JWT)
+- Mocha, Chai, supertest (for API testing)
+- Others ([see package.json](https://github.com/mj-felix/track-my-notes/blob/main/package.json))
 
 ### Frontend
 
- - React
- - Context API (for state management)
- - React Router
- - Bootstrap (via React Bootstrap and [Pulse theme from bootswatch.com](https://bootswatch.com/4/pulse/))
- - Others ([see package.json](https://github.com/mj-felix/track-my-notes/blob/main/frontend/package.json))
+- React
+- Context API (for state management)
+- React Router
+- Bootstrap (via React Bootstrap and [Pulse theme from bootswatch.com](https://bootswatch.com/pulse/))
+- Others ([see package.json](https://github.com/mj-felix/track-my-notes/blob/main/frontend/package.json))
 
 ## Installation Notes
 
@@ -105,9 +105,11 @@ To install MongoDB Community Edition follow the instructions for your platform o
 ### Environement Variables
 
 #### Minimum setup
+
 ```
 ADMIN_EMAIL=your email
 ```
+
 This will allow to set the user as Admin when this email is used during registration. There is no specific functionality for Admin user at present.
 
 ```
@@ -115,16 +117,19 @@ JWT_SECRET=secret123
 JWT_ACCESS_TOKEN_EXPIRES_IN=20m
 JWT_REFRESH_TOKEN_EXPIRES_IN=8h
 ```
+
 This will allow the backend app to generate JSON Web Token and set expiry time for access and refresh tokens.
 
 #### Extended setup
 
 **AWS S3 cloud storage** for uploaded files:
+
 ```
 S3_ACCESS_KEY=key obtained from AWS S3
 S3_ACCESS_SECRET=secret obtained from AWS S3
 S3_BUCKET=track-my-notes-dev
 ```
+
 For AWS S3 setup, go to [aws.amazon.com/s3](https://aws.amazon.com/s3/) and create an account. Once the account has been set up, navigate to the S3 services dashboard to create a new bucket with the name as above. Allow all public access while creating a bucket. Once the bucket has been created, go to Permissions tab and set Bucket policy to be:
 
     {
@@ -184,6 +189,7 @@ API test results:
 You can explore endpoints via [Postman collection](https://github.com/mj-felix/track-my-notes/tree/main/postman/backend_API).
 
 ### Endpoint: /api/v1/auth
+
 ```
 @desc    Register a new user & obtain tokens
 @route   POST /api/v1/auth/register
@@ -199,6 +205,7 @@ You can explore endpoints via [Postman collection](https://github.com/mj-felix/t
 ```
 
 ### Endpoint: /api/v1/users
+
 ```
 @desc    Get logged in user profile
 @route   GET /api/v1/users/profile
@@ -210,11 +217,12 @@ You can explore endpoints via [Postman collection](https://github.com/mj-felix/t
 ```
 
 ### Endpoint: /api/v1/tags
+
 ```
 @desc    Get tags for logged in user
 @route   GET /api/v1/tags
 @access  Private
-  
+
 @desc    Create tag for logged in user
 @route   POST /api/v1/tags
 @access  Private
@@ -229,6 +237,7 @@ You can explore endpoints via [Postman collection](https://github.com/mj-felix/t
 ```
 
 ### Endpoint: /api/v1/notes
+
 ```
 @desc    Get notes for logged in user
 @route   GET /api/v1/notes
@@ -256,6 +265,7 @@ You can explore endpoints via [Postman collection](https://github.com/mj-felix/t
 ```
 
 ### Endpoint: /api/v1/notes/:id/files
+
 ```
 @desc    Upload file for a given note
 @route   POST /api/v1/notes/:id/files
@@ -267,6 +277,7 @@ You can explore endpoints via [Postman collection](https://github.com/mj-felix/t
 ```
 
 ### Endpoint: /api/v1/public/:profilename
+
 ```
 @desc    Retrieve user public profile
 @route   GET /api/v1/public/:profilename

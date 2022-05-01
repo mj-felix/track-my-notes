@@ -1,32 +1,53 @@
 body {
-    background-image:
-      linear-gradient(to bottom, rgb(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8), rgba(211, 211, 211)), 
-      url('home.background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-color: rgba(211, 211, 211);
-    overflow-x: hidden;
+  background-image: linear-gradient(
+      to bottom,
+      rgb(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8),
+      rgba(211, 211, 211)
+    ),
+    url("home.background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: rgba(211, 211, 211);
+  overflow-x: hidden;
 }
 
 main {
-    padding: 70px 0 50px 0;
+  padding: 70px 0 50px 0;
 }
 
 footer {
-    padding: 5px 0;
+  padding-bottom: 5px;
+}
+
+a.tile-title {
+  text-decoration: none;
+}
+
+a.tile-title:hover {
+  text-decoration: underline;
+}
+
+div.row {
+  padding-top: 0.5em;
 }
 
 .pointer {
   cursor: pointer;
 }
+
 .badge a {
   color: white;
 }
 
 .badge a:hover {
   color: white;
+}
+
+.note {
+  padding-bottom: 1em;
 }
 
 .note h1 {
@@ -38,7 +59,7 @@ footer {
 }
 
 .note h3 {
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .note img {
@@ -53,17 +74,7 @@ footer {
 .card-container {
   display: grid;
   grid-column-gap: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-}
-
-ol.breadcrumb {
-  padding-left: 0;
-  margin: 0;
-}
-
-.badge {
-  padding-top: 4px;
-  padding-bottom: 4px;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
 }
 
 /* Animation */
@@ -97,8 +108,7 @@ textarea {
 }
 
 /* disable auto-zoom on iphone input field focus */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
   select:focus,
   textarea:focus,
   input:focus {
