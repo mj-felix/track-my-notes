@@ -70,7 +70,6 @@ const UpdateNote = ({
                   type="switch"
                   checked={isSticky}
                   onChange={(e) => setIsSticky(!isSticky)}
-                  className="ms-2"
                 />
               </Form.Group>
               <Form.Group as={Col} xs={3} controlId="isPublic">

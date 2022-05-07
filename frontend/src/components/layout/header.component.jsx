@@ -80,7 +80,7 @@ const Header = ({ location }) => {
         fixed="top"
         collapseOnSelect
       >
-        <Container fludi="xl">
+        <Container fluid="xxl">
           <div className="d-inline-flex align-items-center">
             <RefreshTokenStatus />
             <LinkContainer to={refreshToken ? "/notes" : "/"}>

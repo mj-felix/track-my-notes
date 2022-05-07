@@ -11,19 +11,15 @@ import sanitizeHtml from "sanitize-html";
 import { withRouter } from "react-router";
 
 import TooltipPopup from "../misc/tooltip-popup.component.jsx";
+
 import { removeProtocol } from "../../utils/manipulate-string.utils.js";
+import { generateColor } from "../../utils/generate-color.utils";
 
 const PublicNote = ({ note, match, isTile }) => {
   const sanitizedNoteDescription = sanitizeHtml(note.description, {
     allowedTags: [],
     allowedAttributes: {},
   });
-
-  const generateColor = (color) => {
-    const colors = ["primary", "success", "info", "warning"];
-    const index = color % 4;
-    return colors[index];
-  };
 
   let color = 0;
 
@@ -33,7 +29,7 @@ const PublicNote = ({ note, match, isTile }) => {
         note.tags.map((tag) => (
           <Badge
             key={tag._id}
-            variant={generateColor(color++)}
+            bg={generateColor(color++)}
             className="me-1 mb-1"
           >
             <Link

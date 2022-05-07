@@ -47,7 +47,7 @@ function App() {
     <Router>
       <Header />
       <main>
-        <Container fluid="xl">
+        <Container fluid="xxl">
           <Switch>
             <PrivateRoute path="/notes" component={NotesPage} />
             <PrivateRoute path="/note/:id" component={NotePage} />

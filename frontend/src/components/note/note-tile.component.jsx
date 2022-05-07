@@ -10,19 +10,15 @@ import PropTypes from "prop-types";
 
 import TooltipPopup from "../misc/tooltip-popup.component.jsx";
 
-const NoteTile = ({ note }) => {
-  const generateColor = (color) => {
-    const colors = ["primary", "success", "info", "warning"];
-    const index = color % 4;
-    return colors[index];
-  };
+import { generateColor } from "../../utils/generate-color.utils";
 
+const NoteTile = ({ note }) => {
   let color = 0;
 
   return (
     <Card style={{ maxHeight: "500px" }} className="mb-3">
       <Card.Header
-        as="h5"
+        as="h6"
         className="d-flex justify-content-between align-items-start"
       >
         <div className="me-1">
@@ -60,7 +56,7 @@ const NoteTile = ({ note }) => {
             <TooltipPopup msg="Note has a link" placement="top">
               <Badge bg="primary">
                 <a href={note.link} target="_blank" rel="noreferrer">
-                  <FontAwesomeIcon size="sm" icon={faExternalLinkAlt} />
+                  <FontAwesomeIcon size="xs" icon={faExternalLinkAlt} />
                 </a>
               </Badge>
             </TooltipPopup>
@@ -79,7 +75,7 @@ const NoteTile = ({ note }) => {
             note.tags.map((tag) => (
               <Badge
                 key={tag._id}
-                variant={generateColor(color++)}
+                bg={generateColor(color++)}
                 className="me-1 mb-1"
               >
                 <Link to={`/notes?tags=${tag._id}`}>{tag.name}</Link>

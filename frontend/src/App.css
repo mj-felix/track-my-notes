@@ -22,6 +22,14 @@ footer {
   padding-bottom: 5px;
 }
 
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
 a.tile-title {
   text-decoration: none;
 }
@@ -44,6 +52,14 @@ div.row {
 
 .badge a:hover {
   color: white;
+}
+
+.card-text {
+  font-size: 0.875em;
+}
+
+.card-text .badge a {
+  text-decoration: none;
 }
 
 .note {
