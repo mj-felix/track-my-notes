@@ -45,18 +45,20 @@ const NoteFiles = () => {
             ) : (
               <>
                 <td className="text-end">
-                  <FontAwesomeIcon
-                    size="lg"
-                    icon={isBeingCopied === file._id ? faCopySolid : faCopy}
-                    className="pointer"
-                    onClick={() => {
-                      handleCopyToClipboard(
-                        file.url,
-                        file.originalFileName,
-                        file._id
-                      );
-                    }}
-                  />
+                  {file.mimeType.startsWith("image/") && (
+                    <FontAwesomeIcon
+                      size="lg"
+                      icon={isBeingCopied === file._id ? faCopySolid : faCopy}
+                      className="pointer"
+                      onClick={() => {
+                        handleCopyToClipboard(
+                          file.url,
+                          file.originalFileName,
+                          file._id
+                        );
+                      }}
+                    />
+                  )}
                 </td>
                 <td className="text-end" style={{ width: "40px" }}>
                   <FontAwesomeIcon
