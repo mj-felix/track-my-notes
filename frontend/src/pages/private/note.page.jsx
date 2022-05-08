@@ -97,7 +97,9 @@ const NotePage = ({ match, history, location }) => {
           notes &&
           notes.notes &&
           notes.notes.length > 0 &&
-          notes.notes.find((note) => note._id === match.params.id);
+          notes.notes.find(
+            (note) => note._id === match.params.id && note.files.length === 0
+          );
         if (fetchedNote) {
           setNote(fetchedNote);
           if (isNoteInDraft(fetchedNote)) {

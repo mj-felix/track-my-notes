@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 import TooltipPopup from "../misc/tooltip-popup.component.jsx";
 
-import { generateColor } from "../../utils/generate-color.utils";
+import { generateColor } from "../../utils/misc.utils";
 
 const NoteTile = ({ note }) => {
   let color = 0;

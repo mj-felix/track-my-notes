@@ -12,10 +12,12 @@ const NoteFiles = () => {
 
   const [isBeingCopied, setIsBeingCopied] = useState(null);
 
-  const handleCopyToClipboard = (url, alt, fileId) => {
+  const handleCopyToClipboard = (alt, fileId, storedFileName) => {
     setIsBeingCopied(fileId);
     setTimeout(() => {
-      navigator.clipboard.writeText(`<img src='${url}' alt='${alt}' />`);
+      navigator.clipboard.writeText(
+        `<img src='${storedFileName}' alt='${alt}' />`
+      );
       setIsBeingCopied(null);
     }, 200);
   };
@@ -52,9 +54,9 @@ const NoteFiles = () => {
                       className="pointer"
                       onClick={() => {
                         handleCopyToClipboard(
-                          file.url,
                           file.originalFileName,
-                          file._id
+                          file._id,
+                          file.storedFileName
                         );
                       }}
                     />

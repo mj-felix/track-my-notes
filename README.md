@@ -128,25 +128,30 @@ This will allow the backend app to generate JSON Web Token and set expiry time f
 S3_ACCESS_KEY=key obtained from AWS S3
 S3_ACCESS_SECRET=secret obtained from AWS S3
 S3_BUCKET=track-my-notes-dev
+S#_REGION=region from AWS S3
 ```
 
 For AWS S3 setup, go to [aws.amazon.com/s3](https://aws.amazon.com/s3/) and create an account. Once the account has been set up, navigate to the S3 services dashboard to create a new bucket with the name as above. Allow all public access while creating a bucket. Once the bucket has been created, go to Permissions tab and set Bucket policy to be:
 
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Sid": "PublicRead",
-                "Effect": "Allow",
-                "Principal": "*",
-                "Action": [
-                    "s3:GetObject",
-                    "s3:GetObjectVersion"
-                ],
-                "Resource": "arn:aws:s3:::track-my-notes-dev/*"
-            }
-        ]
-    }
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": "arn:aws:s3:::track-my-notes-dev/*"
+        }
+    ]
+}
+```
+
+Turn off public access to the bucket.
 
 To obtain access key and secret, open account dropdown and select “My Security Credentials”. Within the security credentials dashboard, open the “Access Keys” section and select “Create New Access Key.” This will generate the access key and secret for the application.
 

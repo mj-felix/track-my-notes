@@ -11,9 +11,13 @@ import sanitizeHtml from "sanitize-html";
 import { withRouter } from "react-router";
 
 import TooltipPopup from "../misc/tooltip-popup.component.jsx";
+import { generateMappingFromFiles } from "../../utils/misc.utils";
 
-import { removeProtocol } from "../../utils/manipulate-string.utils.js";
-import { generateColor } from "../../utils/generate-color.utils";
+import {
+  removeProtocol,
+  replaceStringWithMapping,
+} from "../../utils/manipulate-string.utils.js";
+import { generateColor } from "../../utils/misc.utils";
 
 const PublicNote = ({ note, match, isTile }) => {
   const sanitizedNoteDescription = sanitizeHtml(note.description, {
@@ -25,7 +29,8 @@ const PublicNote = ({ note, match, isTile }) => {
 
   const tags = (
     <Card.Text>
-      {note.tags.length > 0 &&
+      {note.tags &&
+        note.tags.length > 0 &&
         note.tags.map((tag) => (
           <Badge
             key={tag._id}
@@ -108,7 +113,12 @@ const PublicNote = ({ note, match, isTile }) => {
           <>
             {note.description && (
               <div
-                dangerouslySetInnerHTML={{ __html: note.description }}
+                dangerouslySetInnerHTML={{
+                  __html: replaceStringWithMapping(
+                    note.description,
+                    generateMappingFromFiles(note.files)
+                  ),
+                }}
                 className="note"
               />
             )}

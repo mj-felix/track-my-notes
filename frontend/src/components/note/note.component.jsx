@@ -12,7 +12,9 @@ import {
   breakLines,
   removeProtocol,
   addStopPropagation,
+  replaceStringWithMapping,
 } from "../../utils/manipulate-string.utils.js";
+import { generateMappingFromFiles } from "../../utils/misc.utils";
 
 const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
   const appContext = useContext(AppContext);
@@ -68,11 +70,14 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
               setIsBeingUpdated(true);
             }}
             dangerouslySetInnerHTML={{
-              __html: note.isPublic
-                ? addStopPropagation(note.description)
-                : breakLines(
-                    addStopPropagation(replaceLinks(note.description))
-                  ),
+              __html: replaceStringWithMapping(
+                note.isPublic
+                  ? addStopPropagation(note.description)
+                  : breakLines(
+                      addStopPropagation(replaceLinks(note.description))
+                    ),
+                generateMappingFromFiles(note.files)
+              ),
             }}
             className="mt-4 px-2 py-2 px-md-3 py-md-3 px-lg-4 py-lg-4 bg-white note border"
           />
