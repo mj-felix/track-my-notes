@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Badge, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,17 +11,33 @@ import sanitizeHtml from "sanitize-html";
 import { withRouter } from "react-router";
 
 import TooltipPopup from "../misc/tooltip-popup.component.jsx";
-import { generateMappingFromFiles } from "../../utils/misc.utils";
-
+import AuthContext from "../../context/auth/auth.context.js";
+import AppContext from "../../context/app/app.context.js";
+import {
+  generateMappingFromFiles,
+  generateColor,
+} from "../../utils/misc.utils";
 import {
   removeProtocol,
   replaceStringWithMapping,
   openLinksInNewTab,
   convertMarkdownToHtmlSafely,
 } from "../../utils/manipulate-string.utils.js";
-import { generateColor } from "../../utils/misc.utils";
 
 const PublicNote = ({ note, match, isTile }) => {
+  const authContext = useContext(AuthContext);
+  const { isLoggedIn } = authContext;
+  const appContext = useContext(AppContext);
+  const { eraseError, user, fetchUser } = appContext;
+
+  useEffect(() => {
+    if (isLoggedIn && !user) {
+      fetchUser();
+    }
+    return () => eraseError();
+    // eslint-disable-next-line
+  }, [isLoggedIn, user]);
+
   const sanitizedNoteDescription = sanitizeHtml(note.description, {
     allowedTags: [],
     allowedAttributes: {},
@@ -60,6 +76,10 @@ const PublicNote = ({ note, match, isTile }) => {
             <Link to={`/user/${match.params.profileName}/notes/${note._id}`}>
               {note.title}
             </Link>
+          ) : isLoggedIn &&
+            user &&
+            user.profileName === note.user.profileName ? (
+            <Link to={`/note/${note._id}`}>{note.title}</Link>
           ) : (
             <span>{note.title}</span>
           )}
