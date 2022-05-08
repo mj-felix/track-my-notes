@@ -27,6 +27,22 @@ const UpdateNote = ({
   const [link, setLink] = useState(note.link ? note.link : "");
   const [description, setDescription] = useState(note.description);
 
+  const getRowCount = (str) => {
+    const defaultNumberOfLines = 9;
+    const maxNumberOfLines = 30;
+    if (!str) {
+      return defaultNumberOfLines;
+    }
+    const numberOfNewLines = str.split(/\r\n|\r|\n/).length - 1;
+    if (numberOfNewLines < defaultNumberOfLines) {
+      return defaultNumberOfLines;
+    }
+    if (numberOfNewLines > maxNumberOfLines) {
+      return maxNumberOfLines;
+    }
+    return numberOfNewLines;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUpdateLoading(true);
@@ -135,7 +151,7 @@ const UpdateNote = ({
                 <Form.Label>
                   Description{" "}
                   <TooltipPopup
-                    msg="Allowed tags and attributes: strong, em, a[href, target], p, li, ul, ol, img[src, alt, style], h1, h2, h3, br, hr, pre. Use ONLY attached images. Be aware that non-public notes convert urls to external links and break lines automatically."
+                    msg="Use markdwon. Allowed HTML tags and attributes: strong, em, a[href, target], p, li, ul, ol, img[src, alt, style], h1, h2, h3, br, hr, pre. Use ONLY attached files."
                     placement="right"
                   >
                     <span>
@@ -145,7 +161,7 @@ const UpdateNote = ({
                 </Form.Label>
                 <Form.Control
                   as="textarea"
-                  rows={9}
+                  rows={getRowCount(description)}
                   placeholder="Enter description"
                   value={description}
                   autoFocus

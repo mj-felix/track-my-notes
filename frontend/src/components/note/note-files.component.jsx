@@ -12,12 +12,13 @@ const NoteFiles = () => {
 
   const [isBeingCopied, setIsBeingCopied] = useState(null);
 
-  const handleCopyToClipboard = (alt, fileId, storedFileName) => {
+  const handleCopyToClipboard = (alt, fileId, storedFileName, isImage) => {
     setIsBeingCopied(fileId);
+    const copyText = isImage
+      ? `![${alt}](${storedFileName})`
+      : `[${alt}](${storedFileName})`;
     setTimeout(() => {
-      navigator.clipboard.writeText(
-        `<img src='${storedFileName}' alt='${alt}' />`
-      );
+      navigator.clipboard.writeText(copyText);
       setIsBeingCopied(null);
     }, 200);
   };
@@ -47,20 +48,19 @@ const NoteFiles = () => {
             ) : (
               <>
                 <td className="text-end">
-                  {file.mimeType.startsWith("image/") && (
-                    <FontAwesomeIcon
-                      size="lg"
-                      icon={isBeingCopied === file._id ? faCopySolid : faCopy}
-                      className="pointer"
-                      onClick={() => {
-                        handleCopyToClipboard(
-                          file.originalFileName,
-                          file._id,
-                          file.storedFileName
-                        );
-                      }}
-                    />
-                  )}
+                  <FontAwesomeIcon
+                    size="lg"
+                    icon={isBeingCopied === file._id ? faCopySolid : faCopy}
+                    className="pointer"
+                    onClick={() => {
+                      handleCopyToClipboard(
+                        file.originalFileName,
+                        file._id,
+                        file.storedFileName,
+                        file.mimeType.startsWith("image/")
+                      );
+                    }}
+                  />
                 </td>
                 <td className="text-end" style={{ width: "40px" }}>
                   <FontAwesomeIcon

@@ -16,6 +16,8 @@ import { generateMappingFromFiles } from "../../utils/misc.utils";
 import {
   removeProtocol,
   replaceStringWithMapping,
+  openLinksInNewTab,
+  convertMarkdownToHtmlSafely,
 } from "../../utils/manipulate-string.utils.js";
 import { generateColor } from "../../utils/misc.utils";
 
@@ -115,7 +117,9 @@ const PublicNote = ({ note, match, isTile }) => {
               <div
                 dangerouslySetInnerHTML={{
                   __html: replaceStringWithMapping(
-                    note.description,
+                    openLinksInNewTab(
+                      convertMarkdownToHtmlSafely(note.description)
+                    ),
                     generateMappingFromFiles(note.files)
                   ),
                 }}

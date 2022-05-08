@@ -8,11 +8,10 @@ import { withRouter } from "react-router";
 
 import AppContext from "../../context/app/app.context.js";
 import {
-  replaceLinks,
-  breakLines,
   removeProtocol,
-  addStopPropagation,
+  amendLinks,
   replaceStringWithMapping,
+  convertMarkdownToHtmlSafely,
 } from "../../utils/manipulate-string.utils.js";
 import { generateMappingFromFiles } from "../../utils/misc.utils";
 
@@ -71,11 +70,7 @@ const Note = ({ setIsBeingUpdated, history, handleDelete, deleteLoading }) => {
             }}
             dangerouslySetInnerHTML={{
               __html: replaceStringWithMapping(
-                note.isPublic
-                  ? addStopPropagation(note.description)
-                  : breakLines(
-                      addStopPropagation(replaceLinks(note.description))
-                    ),
+                amendLinks(convertMarkdownToHtmlSafely(note.description)),
                 generateMappingFromFiles(note.files)
               ),
             }}
