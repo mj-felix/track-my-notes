@@ -98,7 +98,7 @@ module.exports.getNotes = asyncHandler(async (req, res) => {
   const notesCount = await Note.countDocuments(findFilter);
   const notes = await Note.find(findFilter)
     .select("-__v -files.url")
-    .sort({ isSticky: "desc", madePublicAt: "desc", updatedAt: "desc" })
+    .sort({ isSticky: "desc", updatedAt: "desc" })
     .populate("tags", "name", null, { sort: { name: "asc" } })
     .populate("user", "profileName")
     .limit(pageSize)
